@@ -15,7 +15,7 @@ import numpy as np
 
 from blueprints.standard import standard_bp
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 app.register_blueprint(standard_bp)
 
@@ -23,10 +23,9 @@ app.register_blueprint(standard_bp)
 def home():
     return render_template('base.html')
 
-# Serve HTML files from the 'open' directory
-@app.route('/open/<path:filename>')
-def serve_static(filename):
-    return send_from_directory('open', filename)
+@app.route('/<path:filename>')  
+def send_file(filename):  
+    return send_from_directory(app.static_folder, filename)
 
 @app.route('/charts')
 def charts():
