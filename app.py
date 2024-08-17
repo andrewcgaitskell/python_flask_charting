@@ -120,5 +120,35 @@ def matplotlib_chart_legend_png():
     
     return send_file(output, mimetype='image/png')
 
+@app.route('/matplotlib_legend')
+def matplotlib_legend():
+    return render_template('matplotlib_legend.html')
+
+@app.route('/matplotlib_legend_png.png')
+def matplotlib_legend_png():
+    # Create custom legend handles
+    line1_handle = mlines.Line2D([], [], color='blue', label='Sine Wave', linestyle='-')
+    line2_handle = mlines.Line2D([], [], color='green', label='Cosine Wave', linestyle='-')
+    
+    fill1_handle = mpatches.Patch(color='blue', alpha=0.3, hatch='/', label='Sine Fill')
+    fill2_handle = mpatches.Patch(color='green', alpha=0.3, hatch='\\', label='Cosine Fill')
+    
+    # Combine handles and labels
+    handles = [line1_handle, line2_handle, fill1_handle, fill2_handle]
+    labels = [handle.get_label() for handle in handles]
+    
+    # Create a new figure just for the legend
+    fig, ax = plt.subplots(figsize=(2, 2))
+    ax.legend(handles=handles, labels=labels, loc='center')
+    ax.axis('off')  # Hide the axes
+    
+    # Save it to a BytesIO object
+    output = io.BytesIO()
+    fig.savefig(output, format='png')
+    output.seek(0)
+    
+    return send_file(output, mimetype='image/png')
+
+                       
 if __name__ == '__main__':
     app.run(debug=True)
