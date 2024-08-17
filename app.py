@@ -38,7 +38,7 @@ def tables():
     return render_template('table.html', table_data=table_data)
 
 @app.route('/plotly')
-def index():
+def plotly():
     # Create a simple interactive Plotly chart
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=[1, 2, 3, 4], y=[10, 11, 12, 13], mode='lines+markers', name='Line Plot'))
@@ -49,7 +49,7 @@ def index():
     return render_template('plotly.html', graph_json=graph_json)
 
 @app.route('/matplotlib')
-def index():
+def matplotlib():
     return render_template('matplotlib.html')
 
 @app.route('/matplotlib_png.png')
