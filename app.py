@@ -48,6 +48,10 @@ def index():
     
     return render_template('plotly.html', graph_json=graph_json)
 
+@app.route('/matplotlib')
+def index():
+    return render_template('matplotlib.html')
+
 @app.route('/matplotlib.png')
 def matplotlib_png():
     # Generate a Matplotlib figure
