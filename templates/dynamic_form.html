@@ -4,7 +4,7 @@
 
 {% block content %}
      <h1>Dynamic Form</h1>
-      <form action="{{ url_for('submit_form') }}" method="POST">
+      <form action="{{ url_for('dynamic_form') }}" method="POST">
           {% for field in fields %}
               <label for="{{ field['id'] }}">{{ field['label'] }}:</label>
               <input type="{{ field['type'] }}" id="{{ field['id'] }}" name="{{ field['name'] }}" required>
