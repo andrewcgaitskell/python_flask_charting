@@ -1,0 +1,26 @@
+{
+    "/home": "home.html",
+    "/about": "about.html",
+    "/contact": "contact.html"
+}
+
+
+from flask import Flask, render_template
+import json
+
+app = Flask(__name__)
+
+# Load routes from JSON configuration
+with open('routes.json') as f:
+    routes = json.load(f)
+
+# Function to dynamically create view functions for each route
+def create_view_function(template_name):
+    def view_function():
+        return render_template(template_name)
+    return view_function
+
+# Register routes dynamically
+for route, template in routes.items():
+    app.add_url_rule(route, view_func=create_view_function(template))
+
