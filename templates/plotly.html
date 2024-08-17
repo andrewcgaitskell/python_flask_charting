@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Plotly Chart with Flask</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <h1>Interactive Plotly Chart with Flask and Jinja2</h1>
+{% extends 'base.html' %}
+
+{% block title %}Plotly Chart in Flask{% endblock %}
+
+{% block content %}
+
+  <h1>Interactive Plotly Chart with Flask and Jinja2</h1>
     
     <!-- Container where the Plotly chart will be rendered -->
     <div id="plotly-chart" style="width:100%;max-width:700px;height:400px;"></div>
@@ -17,6 +14,6 @@
         var graph = JSON.parse('{{ graph_json | safe }}');
         Plotly.newPlot('plotly-chart', graph.data, graph.layout);
     </script>
-</body>
-</html>
+
+{% endblock %}
 
