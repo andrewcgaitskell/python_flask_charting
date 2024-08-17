@@ -83,7 +83,7 @@ def matplotlib_png():
     fig.savefig(output, format='png')
     output.seek(0)
 
-    return send_file(output, mimetype='image/png')
+    return send_file(output)
 
 @app.route('/matplotlib_chart_legend')
 def matplotlib_chart_legend():
@@ -126,7 +126,7 @@ def matplotlib_chart_legend_png():
     fig.savefig(output, format='png')
     output.seek(0)
     
-    return send_file(output, mimetype='image/png')
+    return send_file(output)
 
 @app.route('/matplotlib_legend')
 def matplotlib_legend():
@@ -155,7 +155,7 @@ def matplotlib_legend_png():
     fig.savefig(output, format='png')
     output.seek(0)
     
-    return send_file(output, mimetype='image/png')
+    return send_file(output)
 
 @app.route('/dynamic_form')
 def dynamic_form():
