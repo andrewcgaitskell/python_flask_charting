@@ -1,5 +1,9 @@
 from flask import Flask, render_template, jsonify
 
+import plotly.graph_objs as go
+import json
+import plotly
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -32,6 +36,17 @@ def tables():
         {'column1': 'A3', 'column2': 'B3', 'column3': 'C3'}
     ]
     return render_template('table.html', table_data=table_data)
+
+@app.route('/plotly')
+def index():
+    # Create a simple interactive Plotly chart
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=[1, 2, 3, 4], y=[10, 11, 12, 13], mode='lines+markers', name='Line Plot'))
+
+    # Convert the Plotly figure to JSON
+    graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    
+    return render_template('plotly.html', graph_json=graph_json)
 
 if __name__ == '__main__':
     app.run(debug=True)
