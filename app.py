@@ -79,6 +79,10 @@ def matplotlib_png():
 
 @app.route('/matplotlib_chart_legend')
 def matplotlib_chart_legend():
+    return render_template('matplotlib_chart_legend.html')
+
+@app.route('/matplotlib_chart_legend_png.png')
+def matplotlib_chart_legend_png():
     # Sample data
     x = np.linspace(0, 10, 100)
     y1 = np.sin(x)
