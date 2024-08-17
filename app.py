@@ -77,8 +77,8 @@ def matplotlib_png():
 
     return send_file(output, mimetype='image/png')
 
-@app.route('/plotly_legend')
-def plotly_legend():
+@app.route('/matplotlib_chart_legend')
+def matplotlib_chart_legend():
     # Sample data
     x = np.linspace(0, 10, 100)
     y1 = np.sin(x)
@@ -109,10 +109,12 @@ def plotly_legend():
     # Create legend
     ax.legend(handles=handles, labels=labels, loc='upper right')
     
-    # Convert the Plotly figure to JSON
-    graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    # Save it to a BytesIO object
+    output = io.BytesIO()
+    fig.savefig(output, format='png')
+    output.seek(0)
     
-    return render_template('plotly.html', graph_json=graph_json)
+    return send_file(output, mimetype='image/png')
 
 if __name__ == '__main__':
     app.run(debug=True)
