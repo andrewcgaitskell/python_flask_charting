@@ -53,7 +53,7 @@ def plotly():
     fig.add_trace(go.Scatter(x=[1, 2, 3, 4], y=[10, 11, 12, 13], mode='lines+markers', name='Line Plot'))
 
     # Convert the Plotly figure to JSON
-    graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    graph_json = fig.to_json()
     
     return render_template('plotly.html', graph_json=graph_json)
 
