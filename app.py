@@ -13,7 +13,11 @@ import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 import numpy as np
 
+from blueprint.standard import standard_bp
+
 app = Flask(__name__)
+
+app.register_blueprint(standard_bp)
 
 @app.route('/')
 def home():
