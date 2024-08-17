@@ -149,6 +149,14 @@ def matplotlib_legend_png():
     
     return send_file(output, mimetype='image/png')
 
+@app.route('/dynamic_form')
+def dynamic_form():
+    fields = [
+        {'id': 'name', 'label': 'Name', 'type': 'text', 'name': 'name'},
+        {'id': 'email', 'label': 'Email', 'type': 'email', 'name': 'email'},
+        {'id': 'age', 'label': 'Age', 'type': 'number', 'name': 'age'}
+    ]
+    return render_template('dynamic_form.html', fields=fields)
                        
 if __name__ == '__main__':
     app.run(debug=True)
