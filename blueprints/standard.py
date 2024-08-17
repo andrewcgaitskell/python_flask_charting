@@ -14,3 +14,7 @@ def dmtools_faq():
 @standard_bp.route('/contact')
 def dmtools_contact():
     return render_template('dmtools_contact.html')
+
+@standard_bp.route('/offcanvas')
+def offcanvas():
+    return render_template('offcanvas.html')
