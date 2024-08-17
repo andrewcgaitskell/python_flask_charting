@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Flask Matplotlib Example{% endblock %}
+
+{% block content %}
+     <h1>Matplotlib Chart in Flask</h1>
+    <div>
+        <!-- Embed the plot by referencing the /matplotlib.png route -->
+        <img src="{{ url_for('matplotlib_legend_png') }}" alt="Line Chart">
+    </div>
+{% endblock %}
