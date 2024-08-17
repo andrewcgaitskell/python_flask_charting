@@ -1,0 +1,167 @@
+* { 
+    margin: 0; 
+    padding: 0;
+  }
+body {
+    background-color:#EEEECC;
+    font-family: Verdana,sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+}
+p,ul,ol { 
+    margin-bottom: 18px; 
+}
+ul {
+  list-style-type: none;
+  margin-left: 0px;
+}
+h1 { 
+    color: #BBDD66;
+    font-size: 24px; 
+    margin-bottom: 18px; 
+}
+h2 { 
+    color: #a39c8d;
+    font-size: 18px; 
+    line-height: 18px; 
+    margin-bottom: 18px;
+}
+h3 { 
+    font-size: 12px; 
+    line-height: 18px; 
+}
+table {
+  border-spacing:0px;
+  
+}
+th {
+  text-align: left;
+}
+td, th {
+  padding:0px 9px;
+  height:36px
+}
+
+.fieldWrapper {
+  height:36px;
+  margin-bottom:0px;
+}
+label {
+  font-weight:bold;
+}
+
+.odd {
+  background-color: #EEE;
+}
+.even {
+  /*background-color: #CCC;*/
+}
+
+a {
+  color:#339;
+  text-decoration:none;
+}
+a img {
+  border:none;
+}
+a:hover {
+  text-decoration:underline;
+}
+
+ul#tab_bar {
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+ul#tab_bar li {
+  display:inline;
+  padding-right: 12px;
+  font-variant: small-caps;
+}
+
+ul#tab_bar li.current {
+  font-weight: bold;
+}
+
+#outerHeader {
+  padding-top: 18px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #999;
+}
+
+#innerHeader,#innerFooter {
+  width:800px;
+  margin:0px auto;
+}
+
+#innerMain {
+  width:782px;
+  margin:0px auto;
+  min-height:600px;
+  padding-right:17px;
+  border-right:1px solid #CCC;
+}
+#outerMain {
+  padding:18px 0px;
+  background: #fff;/* url('http://www.alistapart.com/d/settingtypeontheweb/images/gridbg.gif');*/
+  background-color: #FFF;
+}
+
+#outerFooter {
+  margin-top: -3px;
+  border-top:3px solid #999;
+  padding-bottom:18px;
+  color:#333;
+  font-size:10px;
+  text-align:right;
+}
+
+.waiting,.selected {
+  color:#999;
+}
+.selected .button {
+  display:none;
+}
+
+.edit_plot {
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 17px
+}
+
+#selectedLimits, #availableLimits {
+  margin-bottom:16px;
+  width: 775px
+
+}
+
+table {
+  border: 1px solid #999;
+}
+tr th {
+  border-bottom:1px solid #999;
+}
+
+.pagination .current {
+  font-weight: bold;
+}
+
+img.graph, img.legend {
+  border: 1px outset #999;
+}
+img.graph {
+  height: 480px;
+  margin-bottom:18px;
+}
+
+table.form, table.layout {
+  border:none;
+  margin-bottom:18px;
+}
+table.form td,
+table.layout td {
+  padding: 0px 18px 0px 0px
+}
+table.form td p {
+ margin:0px;
+}
