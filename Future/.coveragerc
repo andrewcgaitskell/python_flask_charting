@@ -1,0 +1,6 @@
+[run]
+source = flask_chartjs_boilerplate
+omit = 
+    tests/*
+    autoapp.py
+

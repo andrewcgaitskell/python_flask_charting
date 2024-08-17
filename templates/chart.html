@@ -1,0 +1,52 @@
+ {% extends 'base.html' %}
+
+{% block title %}Line Chart{% endblock %}
+
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+    <h2>Line Chart Example</h2>
+    <canvas id="lineChart"></canvas>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const chartData = {{ chart_data|safe }};
+    
+    const ctx = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData.data,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: chartData.title
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: chartData.xLabel,
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: chartData.yLabel,
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
