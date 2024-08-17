@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, send_file
+from flask import Flask, render_template, jsonify, send_file, send_from_directory
 
 import plotly.graph_objs as go
 import json
@@ -22,6 +22,11 @@ app.register_blueprint(standard_bp)
 @app.route('/')
 def home():
     return render_template('base.html')
+
+# Serve HTML files from the 'open' directory
+@app.route('/open/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('open', filename)
 
 @app.route('/charts')
 def charts():
