@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_file
 
 import plotly.graph_objs as go
 import json
@@ -47,6 +47,22 @@ def index():
     graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     
     return render_template('plotly.html', graph_json=graph_json)
+
+@app.route('/matplotlib.png')
+def matplotlib_png():
+    # Generate a Matplotlib figure
+    fig, ax = plt.subplots()
+    x = [0, 1, 2, 3, 4, 5]
+    y = [0, 1, 4, 9, 16, 25]
+    ax.plot(x, y)
+    ax.set(title='Sample Line Chart', xlabel='X-axis', ylabel='Y-axis')
+
+    # Save it to a BytesIO object
+    output = io.BytesIO()
+    fig.savefig(output, format='png')
+    output.seek(0)
+
+    return send_file(output, mimetype='image/png')
 
 if __name__ == '__main__':
     app.run(debug=True)
