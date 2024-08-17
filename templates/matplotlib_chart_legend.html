@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Matplotlib Example</title>
-</head>
-<body>
-    <h1>Matplotlib Chart in Flask</h1>
-    <div>
-        <!-- Embed the plot by referencing the /matplotlib.png route -->
-        <img src="{{ url_for('matplotlib_chart_legend_png') }}" alt="Line Chart">
-    </div>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Matplotlib Chart in Flask{% endblock %}
+
+{% block content %}
+
+<h1>Matplotlib Chart in Flask</h1>
+<div>
+    <!-- Embed the plot by referencing the /matplotlib.png route -->
+    <img src="{{ url_for('matplotlib_chart_legend_png') }}" alt="Line Chart">
+</div>
+
+{% endblock %}
