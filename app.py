@@ -52,7 +52,7 @@ def index():
 def index():
     return render_template('matplotlib.html')
 
-@app.route('/matplotlib.png')
+@app.route('/matplotlib_png.png')
 def matplotlib_png():
     # Generate a Matplotlib figure
     fig, ax = plt.subplots()
