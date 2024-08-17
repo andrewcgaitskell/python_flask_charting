@@ -4,6 +4,9 @@ import plotly.graph_objs as go
 import json
 import plotly
 
+import matplotlib.pyplot as plt
+import io
+
 app = Flask(__name__)
 
 @app.route('/')
