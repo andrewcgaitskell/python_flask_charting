@@ -8,7 +8,10 @@
     
     <!-- Container where the Plotly chart will be rendered -->
     <div id="plotly-chart" style="width:100%;max-width:700px;height:400px;"></div>
-    
+
+
+    <script src="https://cdn.plot.ly/plotly-2.34.0.min.js" charset="utf-8"></script>
+
     <script type="text/javascript">
         // Parse the JSON string to create the Plotly chart
         var graph = JSON.parse('{{ graph_json | safe }}');
