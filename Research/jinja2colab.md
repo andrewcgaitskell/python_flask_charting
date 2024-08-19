@@ -121,7 +121,7 @@ register_macros(env)
 template = env.get_template('example_template.html')
 print(template.render())
 ```
-```
+
 
 ### 5. **Create a License File**
 
