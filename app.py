@@ -52,8 +52,8 @@ def tables():
         {'column1': 'A3', 'column2': 'B3', 'column3': 'C3'}
     ]
     #return render_template('table.html', table_data=table_data)
-    template = env.get_template('table.html', table_data=table_data)
-    return template.render()
+    template = env.get_template('table.html')
+    return template.render(table_data=table_data)
 
 
 @app.route('/plotly')
