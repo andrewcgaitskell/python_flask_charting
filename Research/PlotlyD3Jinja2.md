@@ -1,5 +1,4 @@
-
-Plot Line Chart D3
+# Plot Line Chart D3
 
 user
 how do I plot a line chart from a python dataframe using d3.js in a jinja2 template
