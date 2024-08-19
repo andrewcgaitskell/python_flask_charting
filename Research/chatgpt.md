@@ -655,6 +655,8 @@ Yes, there are several libraries and projects that provide Jinja2 macros for das
 
 While there isn't a single comprehensive library solely focused on Jinja2 macros for dashboarding, many frameworks and libraries provide macros as part of their toolsets for building web applications. Depending on your specific needs, you might find that frameworks like Flask-AppBuilder or Flask-Admin offer the most complete solutions, while others like Dash or custom libraries can provide more flexibility with a bit more setup.
 
+~~
+
 user
 show me how Dash and Jinja2 can integrate
 
@@ -1084,6 +1086,9 @@ Here’s an example of how `app_entry` fits into a custom Jinja2 template for a 
 Using `app_entry` allows you to integrate Dash components seamlessly into a broader HTML structure. This is particularly useful when you want to combine Dash’s data visualizations with a more traditional web page, complete with headers, footers, and other elements.
 
 By controlling where `app_entry` is placed, you can design complex web pages with specific layouts while still taking full advantage of Dash's interactive components.
+
+
+~~
 
 user
 can you create the same without the dash library
