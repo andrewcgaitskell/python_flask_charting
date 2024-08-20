@@ -42,7 +42,8 @@ def charts():
             }]
         }
     }
-    return render_template('chart.html', chart_data=chart_data)
+    template = env.get_template('chart.html')
+    return template.render(chart_data=chart_data)
 
 @app.route('/tables')
 def tables():
@@ -51,7 +52,6 @@ def tables():
         {'column1': 'A2', 'column2': 'B2', 'column3': 'C2'},
         {'column1': 'A3', 'column2': 'B3', 'column3': 'C3'}
     ]
-    #return render_template('table.html', table_data=table_data)
     template = env.get_template('table.html')
     return template.render(table_data=table_data)
 
@@ -64,12 +64,15 @@ def plotly():
 
     # Convert the Plotly figure to JSON
     graph_json = fig.to_json()
-    
-    return render_template('plotly.html', graph_json=graph_json)
+
+    template = env.get_template('plotly.html')
+    return template.render(graph_json=graph_json)
 
 @app.route('/matplotlib')
 def matplotlib():
-    return render_template('matplotlib.html')
+    template = env.get_template('matplotlib.html')
+    return template.render()
+    
 
 @app.route('/matplotlib_png.png')
 def matplotlib_png():
@@ -89,7 +92,8 @@ def matplotlib_png():
 
 @app.route('/matplotlib_chart_legend')
 def matplotlib_chart_legend():
-    return render_template('matplotlib_chart_legend.html')
+    template = env.get_template('matplotlib_chart_legend.html')
+    return template.render()
 
 @app.route('/matplotlib_chart_legend_png.png')
 def matplotlib_chart_legend_png():
@@ -132,7 +136,9 @@ def matplotlib_chart_legend_png():
 
 @app.route('/matplotlib_legend')
 def matplotlib_legend():
-    return render_template('matplotlib_legend.html')
+    template = env.get_template('matplotlib_legend.html')
+    return template.render()
+
 
 @app.route('/matplotlib_legend_png.png')
 def matplotlib_legend_png():
@@ -166,7 +172,8 @@ def dynamic_form():
         {'id': 'email', 'label': 'Email', 'type': 'email', 'name': 'email'},
         {'id': 'age', 'label': 'Age', 'type': 'number', 'name': 'age'}
     ]
-    return render_template('dynamic_form.html', fields=fields)
+    template = env.get_template('dynamic_form.html')
+    return template.render(fields=fields)
                        
 if __name__ == '__main__':
     app.run(debug=True)
