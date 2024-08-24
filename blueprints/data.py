@@ -88,7 +88,7 @@ def plot(id):
     #filtered_data.plot(kind='bar')  # Customize this plot as per your dataset
     filtered_data.plot.bar(x='variable', y='value', rot=0)
     plt.title(f'Data for ID {id}')
-    plt.xlabel('Product')  # Adjust label based on your data
+    plt.xlabel('Month')  # Adjust label based on your data
     plt.ylabel('Value')  # Adjust label based on your data
 
     # Save the plot to a BytesIO object
