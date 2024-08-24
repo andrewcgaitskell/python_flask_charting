@@ -20,14 +20,16 @@ import matplotlib.lines as mlines
 import numpy as np
 
 from blueprints.standard import standard_bp
+from blueprints.charts import charts_bp
 
 app = Flask(__name__, static_folder='static')
 
 app.register_blueprint(standard_bp)
+app.register_blueprint(charts_bp)
 
 @app.route('/')
 def home():
-    return render_template('base.html')
+    return render_template('static/home.html')
 
 
 @app.route('/charts')
@@ -46,7 +48,7 @@ def charts():
             }]
         }
     }
-    template = env.get_template('chart.html')
+    template = env.get_template('charts/chart.html')
     return template.render(chart_data=chart_data)
 
 @app.route('/tables')
@@ -56,7 +58,7 @@ def tables():
         {'column1': 'A2', 'column2': 'B2', 'column3': 'C2'},
         {'column1': 'A3', 'column2': 'B3', 'column3': 'C3'}
     ]
-    template = env.get_template('table.html')
+    template = env.get_template('tables/table.html')
     return template.render(table_data=table_data)
 
 
@@ -74,7 +76,7 @@ def plotly():
 
 @app.route('/matplotlib')
 def matplotlib():
-    template = env.get_template('matplotlib.html')
+    template = env.get_template('charts/matplotlib.html')
     return template.render()
     
 
@@ -96,7 +98,7 @@ def matplotlib_png():
 
 @app.route('/matplotlib_chart_legend')
 def matplotlib_chart_legend():
-    template = env.get_template('matplotlib_chart_legend.html')
+    template = env.get_template('charts/matplotlib_chart_legend.html')
     return template.render()
 
 @app.route('/matplotlib_chart_legend_png.png')
@@ -140,7 +142,7 @@ def matplotlib_chart_legend_png():
 
 @app.route('/matplotlib_legend')
 def matplotlib_legend():
-    template = env.get_template('matplotlib_legend.html')
+    template = env.get_template('charts/matplotlib_legend.html')
     return template.render()
 
 
@@ -176,7 +178,7 @@ def dynamic_form():
         {'id': 'email', 'label': 'Email', 'type': 'email', 'name': 'email'},
         {'id': 'age', 'label': 'Age', 'type': 'number', 'name': 'age'}
     ]
-    template = env.get_template('dynamic_form.html')
+    template = env.get_template('forms/dynamic_form.html')
     return template.render(fields=fields)
                        
 if __name__ == '__main__':
