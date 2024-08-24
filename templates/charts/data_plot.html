@@ -1,4 +1,10 @@
- <style>
+{% extends 'base/base.html' %}
+
+{% block title %}Data Chart{% endblock %}
+
+{% block content %}
+
+<style>
         /* Make the container div responsive */
         .plot-container {
             width: 100%;
@@ -14,6 +20,7 @@
             display: block; /* Remove any gaps below the image */
         }
 </style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,4 +35,5 @@
     <a href="/">Go Back</a>
 </body>
 
+{% endblock %}
 
