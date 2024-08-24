@@ -55,13 +55,13 @@ def plot(id):
     ]
     
     # Load the JSON data
-    # data = pd.DataFrame(data=dataset_json)
+    data_df_json = pd.DataFrame(data=dataset_json)
     
     # Flatten the nested 'sales' dictionary
-    df = pd.json_normalize(dataset_json.to_dict(orient='records'), record_path=['sales'], 
+    df = pd.json_normalize(data_df_json.to_dict(orient='records'), record_path=['sales'], 
                           meta=['id', 'product_name'], meta_prefix=None)
     
-    print(data)
+    print(df)
   
     # Step 2: Filter the dataset
     filtered_data = df[df['id'] == id]
