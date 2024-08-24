@@ -82,10 +82,11 @@ def plot(id):
 
     # Step 3: Create the chart using Matplotlib
     plt.figure()
-    filtered_data.plot(kind='bar')  # Customize this plot as per your dataset
+    #filtered_data.plot(kind='bar')  # Customize this plot as per your dataset
+    filtered_data.plot.bar(x='product_name', y='value', rot=0)
     plt.title(f'Data for ID {id}')
-    plt.xlabel('X-Axis Label')  # Adjust label based on your data
-    plt.ylabel('Y-Axis Label')  # Adjust label based on your data
+    plt.xlabel('Product')  # Adjust label based on your data
+    plt.ylabel('Value')  # Adjust label based on your data
 
     # Save the plot to a BytesIO object
     img = io.BytesIO()
