@@ -70,10 +70,12 @@ def plot(id):
 
     dataset = pd.melt(df, id_vars=['id','product_name'], value_vars=column_names)
 
-    print(dataset)
+    #print(dataset)
   
     # Step 2: Filter the dataset
     filtered_data = dataset[dataset['id'] == id]
+
+    print(filtered_data)
 
     if filtered_data.empty:
         return "No data found for the given ID.", 404
