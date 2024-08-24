@@ -2,6 +2,9 @@ from flask import Blueprint, render_template
 import matplotlib.pyplot as plt
 import io
 
+import base64
+import json
+
 import pandas as pd
 
 # for legend
@@ -11,7 +14,6 @@ import matplotlib.lines as mlines
 import numpy as np
 
 data_bp = Blueprint('data_bp', __name__)
-
 
 @data_bp.route('/plot/<int:id>')
 def plot(id):
@@ -61,11 +63,17 @@ def plot(id):
     #df = pd.json_normalize(data_df_json.to_dict(orient='records'), record_path=['sales'], 
     #                      meta=['id', 'product_name'], meta_prefix=None)
     df = pd.json_normalize(data_df_json.to_dict(orient='records'))
-    
-    print(df)
+
+    column_names = list(df.columns)
+    column_names.remove('id')
+    column_names.remove('product_name')
+
+    dataset = pd.melt(df, id_vars=['id','product_name'], value_vars=column_names)
+
+    print(dataset)
   
     # Step 2: Filter the dataset
-    filtered_data = df[df['id'] == id]
+    filtered_data = dataset[dataset['id'] == id]
 
     if filtered_data.empty:
         return "No data found for the given ID.", 404
