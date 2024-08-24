@@ -55,7 +55,7 @@ def plot(id):
     ]
     
     # Load the JSON data
-    data = pd.read_json(dataset_json)
+    data = pd.DataFrame(data=dataset_json)
     
     # Flatten the nested 'sales' dictionary
     df = pd.json_normalize(data.to_dict(orient='records'), record_path=['sales'], 
