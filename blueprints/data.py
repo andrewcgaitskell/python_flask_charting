@@ -70,6 +70,9 @@ def plot(id):
 
     dataset = pd.melt(df, id_vars=['id','product_name'], value_vars=column_names)
 
+    dataset['variable'] = dataset['variable'].replace('sales.', '', regex=True)
+
+    
     #print(dataset)
   
     # Step 2: Filter the dataset
@@ -83,7 +86,7 @@ def plot(id):
     # Step 3: Create the chart using Matplotlib
     plt.figure()
     #filtered_data.plot(kind='bar')  # Customize this plot as per your dataset
-    filtered_data.plot.bar(x='product_name', y='value', rot=0)
+    filtered_data.plot.bar(x='variable', y='value', rot=0)
     plt.title(f'Data for ID {id}')
     plt.xlabel('Product')  # Adjust label based on your data
     plt.ylabel('Value')  # Adjust label based on your data
