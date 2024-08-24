@@ -15,8 +15,8 @@
 
         /* Ensure the image fills the container div */
         .plot-container img {
-            width: 100%;
-            height: auto;  /* Preserve aspect ratio */
+            width: 100vw;
+            height: 80vh;  /* Preserve aspect ratio */
             display: block; /* Remove any gaps below the image */
         }
 </style>
@@ -31,8 +31,6 @@
         <h1>Plot for Product ID {{ id }}</h1>
         <img src="data:image/png;base64,{{ plot_url }}" alt="Maximized Plot">
     </div>
-</body>
-    <a href="/">Go Back</a>
 </body>
 
 {% endblock %}
