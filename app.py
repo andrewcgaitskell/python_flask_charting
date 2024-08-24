@@ -24,8 +24,8 @@ from blueprints.charts import charts_bp
 
 app = Flask(__name__, static_folder='static')
 
-app.register_blueprint(standard_bp)
-app.register_blueprint(charts_bp)
+app.register_blueprint(standard_bp, url_prefix="/")
+app.register_blueprint(charts_bp, url_prefix="/charts")
 
 @app.route('/')
 def home():
