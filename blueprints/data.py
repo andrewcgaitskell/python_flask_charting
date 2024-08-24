@@ -93,7 +93,7 @@ def plot(id):
 
     # Save the plot to a BytesIO object
     img = io.BytesIO()
-    plt.savefig(img, format='png', bbox_inches='tight')
+    plt.savefig(img, format='png', bbox_inches='tight', dpi=200)
     img.seek(0)
 
     # Encode the image to base64 string
