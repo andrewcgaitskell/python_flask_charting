@@ -18,8 +18,9 @@ def charts():
             }]
         }
     }
-    template = env.get_template('charts/chart.html')
-    return template.render(chart_data=chart_data)
+    #template = env.get_template('charts/chart.html')
+    #return template.render(chart_data=chart_data)
+    return render_template('charts/chart.html', chart_data=chart_data)
 
 @charts_bp.route('/tables')
 def tables():
@@ -28,8 +29,9 @@ def tables():
         {'column1': 'A2', 'column2': 'B2', 'column3': 'C2'},
         {'column1': 'A3', 'column2': 'B3', 'column3': 'C3'}
     ]
-    template = env.get_template('tables/table.html')
-    return template.render(table_data=table_data)
+    #template = env.get_template('tables/table.html')
+    #return template.render(table_data=table_data)
+    return render_template('tables/table.html', table_data=table_data)
 
 
 @charts_bp.route('/plotly')
@@ -41,13 +43,15 @@ def plotly():
     # Convert the Plotly figure to JSON
     graph_json = fig.to_json()
 
-    template = env.get_template('plotly.html')
-    return template.render(graph_json=graph_json)
+    #template = env.get_template('plotly.html')
+    #return template.render(graph_json=graph_json)
+    return render_template('charts/plotly.html', graph_json=graph_json)
 
 @charts_bp.route('/matplotlib')
 def matplotlib():
-    template = env.get_template('charts/matplotlib.html')
-    return template.render()
+    #template = env.get_template('charts/matplotlib.html')
+    #return template.render()
+    return render_template('charts/matplotlib.html')
     
 
 @charts_bp.route('/matplotlib_png.png')
@@ -68,8 +72,9 @@ def matplotlib_png():
 
 @charts_bp.route('/matplotlib_chart_legend')
 def matplotlib_chart_legend():
-    template = env.get_template('charts/matplotlib_chart_legend.html')
-    return template.render()
+    #template = env.get_template('charts/matplotlib_chart_legend.html')
+    #return template.render()
+    return render_template('charts/matplotlib_chart_legend.html')
 
 @charts_bp.route('/matplotlib_chart_legend_png.png')
 def matplotlib_chart_legend_png():
@@ -112,9 +117,9 @@ def matplotlib_chart_legend_png():
 
 @charts_bp.route('/matplotlib_legend')
 def matplotlib_legend():
-    template = env.get_template('charts/matplotlib_legend.html')
-    return template.render()
-
+    #template = env.get_template('charts/matplotlib_legend.html')
+    #return template.render()
+    return render_template('charts/matplotlib_legend.html')
 
 @charts_bp.route('/matplotlib_legend_png.png')
 def matplotlib_legend_png():
@@ -148,10 +153,11 @@ def dynamic_form():
         {'id': 'email', 'label': 'Email', 'type': 'email', 'name': 'email'},
         {'id': 'age', 'label': 'Age', 'type': 'number', 'name': 'age'}
     ]
-    template = env.get_template('forms/dynamic_form.html')
-    return template.render(fields=fields)
+    #template = env.get_template('forms/dynamic_form.html')
+    #return template.render(fields=fields)
+    return render_template('forms/dynamic_form.html', fields=fields)
 
 @charts_bp.route('/offcanvas')
 def offcanvas():
-    return render_template('offcanvas.html')
+    return render_template('base/offcanvas.html')
 
