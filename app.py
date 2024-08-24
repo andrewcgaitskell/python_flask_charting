@@ -1,6 +1,10 @@
 from flask import Flask, render_template, jsonify, send_file, send_from_directory
 
-from dmtools_jinja2_macros import env
+from brown_edu_dmtools.dmtools_client_package.dmtools_client_module import DMToolsClient
+from brown_edu_dmtools.dmtools_client_package.dmtools_client_module import DMToolTestData
+from brown_edu_dmtools.dmtools_client_package.dmtools_client_module import PlotTrace
+
+from brown_edu_dmtools.dmtools_jinja2_macros import env
 
 import plotly.graph_objs as go
 import json
