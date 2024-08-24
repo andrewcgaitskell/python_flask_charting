@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block title %}Flask Matplotlib Example{% endblock %}
 
@@ -6,6 +6,6 @@
      <h1>Matplotlib Chart in Flask</h1>
     <div>
         <!-- Embed the plot by referencing the /matplotlib.png route -->
-        <img src="{{ url_for('matplotlib_legend_png') }}" alt="Line Chart">
+        <img src="{{ url_for('charts_bp.matplotlib_legend_png') }}" alt="Line Chart">
     </div>
 {% endblock %}
