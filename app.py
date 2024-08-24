@@ -27,7 +27,7 @@ app = Flask(__name__, static_folder='static')
 
 app.register_blueprint(standard_bp, url_prefix="/")
 app.register_blueprint(charts_bp, url_prefix="/charts")
-app.register_blueprint(charts_bp, url_prefix="/data")
+app.register_blueprint(data_bp, url_prefix="/data")
 
 @app.route('/')
 def home():
