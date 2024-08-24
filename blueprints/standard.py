@@ -4,7 +4,7 @@ standard_bp = Blueprint('standard_bp', __name__)
 
 # Define routes for the blueprint
 @standard_bp.route('/home')
-def dmtools_help():
+def home():
     return render_template('static/home.html')
 
 # Define routes for the blueprint
