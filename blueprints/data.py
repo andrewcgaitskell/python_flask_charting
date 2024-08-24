@@ -12,56 +12,57 @@ import numpy as np
 
 data_bp = Blueprint('data_bp', __name__)
 
-dataset_json = [
-  {
-    "id": 1,
-    "product_name": "Product A",
-    "sales": {
-      "January": 120,
-      "February": 150,
-      "March": 130,
-      "April": 170,
-      "May": 160,
-      "June": 180
-    }
-  },
-  {
-    "id": 2,
-    "product_name": "Product B",
-    "sales": {
-      "January": 80,
-      "February": 95,
-      "March": 100,
-      "April": 110,
-      "May": 105,
-      "June": 115
-    }
-  },
-  {
-    "id": 3,
-    "product_name": "Product C",
-    "sales": {
-      "January": 200,
-      "February": 220,
-      "March": 210,
-      "April": 230,
-      "May": 240,
-      "June": 250
-    }
-  }
-]
-
-# Load the JSON data
-data = pd.read_json(dataset_json)
-
-# Flatten the nested 'sales' dictionary
-df = pd.json_normalize(data.to_dict(orient='records'), record_path=['sales'], 
-                       meta=['id', 'product_name'], meta_prefix=None)
-
-print(df)
 
 @data_bp.route('/plot/<int:id>')
 def plot(id):
+    dataset_json = [
+      {
+        "id": 1,
+        "product_name": "Product A",
+        "sales": {
+          "January": 120,
+          "February": 150,
+          "March": 130,
+          "April": 170,
+          "May": 160,
+          "June": 180
+        }
+      },
+      {
+        "id": 2,
+        "product_name": "Product B",
+        "sales": {
+          "January": 80,
+          "February": 95,
+          "March": 100,
+          "April": 110,
+          "May": 105,
+          "June": 115
+        }
+      },
+      {
+        "id": 3,
+        "product_name": "Product C",
+        "sales": {
+          "January": 200,
+          "February": 220,
+          "March": 210,
+          "April": 230,
+          "May": 240,
+          "June": 250
+        }
+      }
+    ]
+    
+    # Load the JSON data
+    data = pd.read_json(dataset_json)
+    
+    # Flatten the nested 'sales' dictionary
+    df = pd.json_normalize(data.to_dict(orient='records'), record_path=['sales'], 
+                           meta=['id', 'product_name'], meta_prefix=None)
+    
+    print(df)
+  
     # Step 2: Filter the dataset
     filtered_data = df[df['id'] == id]
 
