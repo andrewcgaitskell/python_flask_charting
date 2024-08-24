@@ -1,0 +1,157 @@
+from flask import Blueprint, render_template
+
+charts_bp = Blueprint('charts_bp', __name__)
+
+@charts_bp.route('/charts')
+def charts():
+    chart_data = {
+        'title': 'Sample Line Chart',
+        'xLabel': 'Time (s)',
+        'yLabel': 'Value (V)',
+        'data': {
+            'labels': ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            'datasets': [{
+                'label': 'My First dataset',
+                'backgroundColor': 'rgba(255, 159, 64, 0.2)',
+                'borderColor': 'rgba(255, 159, 64, 1)',
+                'data': [65, 59, 80, 81, 56, 55, 40]
+            }]
+        }
+    }
+    template = env.get_template('charts/chart.html')
+    return template.render(chart_data=chart_data)
+
+@charts_bp.route('/tables')
+def tables():
+    table_data = [
+        {'column1': 'A1', 'column2': 'B1', 'column3': 'C1'},
+        {'column1': 'A2', 'column2': 'B2', 'column3': 'C2'},
+        {'column1': 'A3', 'column2': 'B3', 'column3': 'C3'}
+    ]
+    template = env.get_template('tables/table.html')
+    return template.render(table_data=table_data)
+
+
+@charts_bp.route('/plotly')
+def plotly():
+    # Create a simple interactive Plotly chart
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=[1, 2, 3, 4], y=[10, 11, 12, 13], mode='lines+markers', name='Line Plot'))
+
+    # Convert the Plotly figure to JSON
+    graph_json = fig.to_json()
+
+    template = env.get_template('plotly.html')
+    return template.render(graph_json=graph_json)
+
+@charts_bp.route('/matplotlib')
+def matplotlib():
+    template = env.get_template('charts/matplotlib.html')
+    return template.render()
+    
+
+@charts_bp.route('/matplotlib_png.png')
+def matplotlib_png():
+    # Generate a Matplotlib figure
+    fig, ax = plt.subplots()
+    x = [0, 1, 2, 3, 4, 5]
+    y = [0, 1, 4, 9, 16, 25]
+    ax.plot(x, y)
+    ax.set(title='Sample Line Chart', xlabel='X-axis', ylabel='Y-axis')
+
+    # Save it to a BytesIO object
+    output = io.BytesIO()
+    fig.savefig(output, format='png')
+    output.seek(0)
+
+    return send_file(output, mimetype='image/png')
+
+@charts_bp.route('/matplotlib_chart_legend')
+def matplotlib_chart_legend():
+    template = env.get_template('charts/matplotlib_chart_legend.html')
+    return template.render()
+
+@charts_bp.route('/matplotlib_chart_legend_png.png')
+def matplotlib_chart_legend_png():
+    # Sample data
+    x = np.linspace(0, 10, 100)
+    y1 = np.sin(x)
+    y2 = np.cos(x)
+    
+    # Create the plot
+    fig, ax = plt.subplots()
+    
+    # Plot lines
+    line1, = ax.plot(x, y1, color='blue', label='Sine Wave')
+    line2, = ax.plot(x, y2, color='green', label='Cosine Wave')
+    
+    # Plot filled areas with patterns
+    ax.fill_between(x, y1, color='blue', alpha=0.3, hatch='/', label='Sine Fill')
+    ax.fill_between(x, y2, color='green', alpha=0.3, hatch='\\', label='Cosine Fill')
+    
+    # Create custom legend handles
+    line1_handle = mlines.Line2D([], [], color='blue', label='Sine Wave', linestyle='-')
+    line2_handle = mlines.Line2D([], [], color='green', label='Cosine Wave', linestyle='-')
+    
+    fill1_handle = mpatches.Patch(color='blue', alpha=0.3, hatch='/', label='Sine Fill')
+    fill2_handle = mpatches.Patch(color='green', alpha=0.3, hatch='\\', label='Cosine Fill')
+    
+    # Combine handles
+    handles = [line1_handle, line2_handle, fill1_handle, fill2_handle]
+    labels = [handle.get_label() for handle in handles]
+    
+    # Create legend
+    ax.legend(handles=handles, labels=labels, loc='upper right')
+    
+    # Save it to a BytesIO object
+    output = io.BytesIO()
+    fig.savefig(output, format='png')
+    output.seek(0)
+    
+    return send_file(output,  mimetype='image/png')
+
+@charts_bp.route('/matplotlib_legend')
+def matplotlib_legend():
+    template = env.get_template('charts/matplotlib_legend.html')
+    return template.render()
+
+
+@charts_bp.route('/matplotlib_legend_png.png')
+def matplotlib_legend_png():
+    # Create custom legend handles
+    line1_handle = mlines.Line2D([], [], color='blue', label='Sine Wave', linestyle='-')
+    line2_handle = mlines.Line2D([], [], color='green', label='Cosine Wave', linestyle='-')
+    
+    fill1_handle = mpatches.Patch(color='blue', alpha=0.3, hatch='/', label='Sine Fill')
+    fill2_handle = mpatches.Patch(color='green', alpha=0.3, hatch='\\', label='Cosine Fill')
+    
+    # Combine handles and labels
+    handles = [line1_handle, line2_handle, fill1_handle, fill2_handle]
+    labels = [handle.get_label() for handle in handles]
+    
+    # Create a new figure just for the legend
+    fig, ax = plt.subplots(figsize=(2, 2))
+    ax.legend(handles=handles, labels=labels, loc='center')
+    ax.axis('off')  # Hide the axes
+    
+    # Save it to a BytesIO object
+    output = io.BytesIO()
+    fig.savefig(output, format='png')
+    output.seek(0)
+    
+    return send_file(output,  mimetype='image/png')
+
+@charts_bp.route('/dynamic_form')
+def dynamic_form():
+    fields = [
+        {'id': 'name', 'label': 'Name', 'type': 'text', 'name': 'name'},
+        {'id': 'email', 'label': 'Email', 'type': 'email', 'name': 'email'},
+        {'id': 'age', 'label': 'Age', 'type': 'number', 'name': 'age'}
+    ]
+    template = env.get_template('forms/dynamic_form.html')
+    return template.render(fields=fields)
+
+@charts_bp.route('/offcanvas')
+def offcanvas():
+    return render_template('offcanvas.html')
+
