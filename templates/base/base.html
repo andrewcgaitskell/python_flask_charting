@@ -8,19 +8,15 @@
 
     <style>
         body {
-            background-color: #f8f1e7;
+            background-color: #D3B683;
             color: #3e2723;
-        }
-        .navbar, .footer {
-            background-color: #795548;
-            color: white;
         }
     </style>
     {% block head %}{% endblock %}
 </head>
 <body>
     {% include 'base/header.html' %}
-    <div class="container mt-4">
+    <div>
         {% block content %}{% endblock %}
     </div>
     {% include 'base/footer.html' %}
