@@ -1,13 +1,4 @@
-<title>Slide Out Panel Menu</title>
 <style>
-    /* Style for the body and page content */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
-
 
     /* Style for the slide-out panel */
     .side-panel {
@@ -16,7 +7,7 @@
         position: fixed;
         top: 0;
         left: -250px;
-        background-color: #333;
+        background-color: #D3B683;
         overflow-x: hidden;
         transition: 0.3s;
         padding-top: 60px;
@@ -28,34 +19,34 @@
         padding: 10px 15px;
         text-decoration: none;
         font-size: 18px;
-        color: #fff;
+        color: #D3B683;
         display: block;
         transition: 0.3s;
     }
 
     .side-panel a:hover {
-        background-color: #575757;
+        background-color: #D3B683.;
     }
 
     /* Toggle button style */
     .open-btn {
         font-size: 20px;
         cursor: pointer;
-        background-color: #333;
+        background-color: #D3B683;
         color: white;
         padding: 10px 15px;
         border: none;
     }
 </style>
-</head>
+
 <body>
 
 <!-- Toggle button for the side panel
 <button class="open-btn" onclick="togglePanel()">☰ Open Menu</button>
--->
 
-<!-- Toggle button for the side panel -->
+<!-- Toggle button for the side panel 
 <button class="open-btn" onclick="togglePanel()"> {% include 'static/new_logo.html' %}</button>
+-->
 
 <!-- Side panel -->
 <div id="sidePanel" class="side-panel">
