@@ -76,5 +76,17 @@ dynamic_data = [
 
 @viewing_bp.route('/dynamic_table')
 def dynamic_table():
-    # Pass the data to the Jinja2 template
-    return render_template('tables/dynamic_table.html', data=dynamic_data)
+    # Calculate maximum width for each column
+    column_widths = {
+        "id": max(len(str(row["id"])) for row in dynamic_data),
+        "name": max(len(row["name"]) for row in dynamic_data),
+        "age": max(len(str(row["age"])) for row in dynamic_data),
+        "email": max(len(row["email"]) for row in dynamic_data),
+    }
+    
+    # Convert character counts to pixel widths (assuming 10 pixels per character)
+    column_widths_px = {col: width * 10 for col, width in column_widths.items()}
+    
+    return render_template('tables/dynamic_table.html', data=dynamic_data, column_widths=column_widths_px)
+
+
