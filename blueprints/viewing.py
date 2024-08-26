@@ -148,4 +148,4 @@ def dynamic_subject(subject_in):
     
     print(column_widths_as_percentage)
     
-    return render_template('tables/dynamic_widths.html', data=dynamic_data, column_widths=column_widths_as_percentage)
+    return render_template('tables/dynamic_widths.html', data=subject_data, column_widths=column_widths_as_percentage)
