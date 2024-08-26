@@ -90,7 +90,7 @@ def dynamic_table():
     total_width = sum(column_widths_in_characters.values())
     
     # Calculate column widths as percentages
-    column_widths_as_percentage = {col: (width / total_widths) * 100 for col, width in column_widths_in_characters.items()}
+    column_widths_as_percentage = {col: (width / total_width) * 100 for col, width in column_widths_in_characters.items()}
     
     print(column_widths_as_percentage)
     
