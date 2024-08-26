@@ -33,7 +33,7 @@ data = [
 @viewing_bp.route('/selection_table')
 def selection_table():
     # Render a template with a table of items
-    return render_template('table/selection_table.html', data=data)
+    return render_template('tables/selection_table.html', data=data)
 
 @viewing_bp.route('/selected_chart/<int:item_id>')
 def selected_chart(item_id):
@@ -44,7 +44,7 @@ def selected_chart(item_id):
         return "Item not found", 404
     
     # Pass the selected item's data to the chart template
-    return render_template('table/selected_chart.html', item=selected_item)
+    return render_template('tables/selected_chart.html', item=selected_item)
 
 
 @viewing_bp.route('/charts')
