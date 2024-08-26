@@ -157,6 +157,8 @@ def view_details(subject_in, item_id):
     }
     
     # Pass the selected item's data to the chart template
+    print(form_data)
+    
     return render_template('tables/view_details.html', data=form_data, dropdown_options=dropdown_options)
 
 
