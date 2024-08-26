@@ -87,6 +87,6 @@ def dynamic_table():
     # Convert character counts to pixel widths (assuming 10 pixels per character)
     column_widths_px = {col: width * 10 for col, width in column_widths.items()}
     
-    return render_template('tables/dynamic_table.html', data=dynamic_data, column_widths=column_widths_px)
+    return render_template('tables/dynamic_widths.html', data=dynamic_data, column_widths=column_widths_px)
 
 
