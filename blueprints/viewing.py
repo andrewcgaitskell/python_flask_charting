@@ -134,7 +134,7 @@ def dynamic_table():
     return render_template('tables/dynamic_widths.html', data=dynamic_data, column_widths=column_widths_as_percentage)
 
 @viewing_bp.route('/all_subject_data/<string:subject_in>')
-def dynamic_subject():
+def dynamic_subject(subject_in):
     # Calculate maximum width for each column
     subject_data = Client.read(subject=subject_in)
     
