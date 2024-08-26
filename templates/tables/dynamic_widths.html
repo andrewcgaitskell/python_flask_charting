@@ -38,7 +38,7 @@
                         {% endfor %}
                         <td>
                         <!-- Link to the chart route with the selected item ID -->
-                        <a href="{{ url_for('viewing_bp.view_details', id=row['id'], subject=row['subject'] ) }}">View Detail</a>
+                        <a href="{{ url_for('viewing_bp.view_details', item_id=row['id'], subject_in=row['subject'] ) }}">View Detail</a>
                         </td>
                     </tr>
                 {% endfor %}
