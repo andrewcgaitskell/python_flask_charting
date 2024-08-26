@@ -1,3 +1,16 @@
+## get api key and user id from local .env file
+from dotenv import load_dotenv
+import os
+from os import environ, path
+
+BASE_DIR = os.getcwd()
+
+print("BASE_DIR >>>>>>>>>>>>>>", BASE_DIR)
+
+load_dotenv(path.join(BASE_DIR, ".env"))
+MY_DMTOOLS_APIKEY = environ.get("MY_DMTOOLS_APIKEY")
+MY_DMTOOLS_USERID = environ.get("MY_DMTOOLS_USERID")
+
 from flask import Blueprint
 
 from flask import Flask, render_template, jsonify, send_file, send_from_directory
@@ -7,6 +20,8 @@ from brown_edu_dmtools.dmtools_client_package.dmtools_client_module import DMToo
 from brown_edu_dmtools.dmtools_client_package.dmtools_client_module import PlotTrace
 
 from brown_edu_dmtools.dmtools_jinja2_macros import env
+
+Client = DMToolsClient(MY_DMTOOLS_USERID, MY_DMTOOLS_APIKEY)
 
 import plotly.graph_objs as go
 import json
