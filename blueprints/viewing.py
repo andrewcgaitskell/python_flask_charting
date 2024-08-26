@@ -45,8 +45,7 @@ data = [
     {"id": 3, "name": "Item 3", "value": 30},
 ]
 
-form_metadata =
-[
+form_metadata = [
 {'field:'date_of_announcement','label:'Date of Announcement','type':'datetime','default_value':'1980-01-01 00:00:00'},
 {'field:'archived_at','label:'Archived At','type':'datetime','default_value':'1980-01-01 00:00:00'},
 {'field:'created_at','label:'Created At','type':'datetime','default_value':'1980-01-01 00:00:00'},
