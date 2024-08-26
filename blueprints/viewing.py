@@ -69,8 +69,13 @@ def view_details(subject_in, item_id):
     if not subject_data:
         return "Item not found", 404
     
+    dropdown_options = {
+    "name": ["A", "B", "C"]
+    }
+    
     # Pass the selected item's data to the chart template
-    return render_template('tables/view_details.html', item=selected_item)
+    return render_template('tables/view_details.html', data=subject_data, dropdown_options=dropdown_options)
+
 
 @viewing_bp.route('/charts')
 def view_chart():
