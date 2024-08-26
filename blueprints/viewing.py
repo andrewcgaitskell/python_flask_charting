@@ -144,10 +144,12 @@ def view_details(subject_in, item_id):
     # Iterating over key-value pairs
     for form_item in form_data:
         form_row_record = form_label_dict.get(form_item[0], None)
+        print(form_item[0])
+        print(form_row_record)
         form_row = {}
-        form_row['name'] = field_record['name']
-        form_row['label'] = field_record['label']
-        form_row['type']= field_record['type']
+        form_row['name'] = form_row_record['name']
+        form_row['label'] = form_row_record['label']
+        form_row['type']= form_row_record['type']
         form_row['required']= 'True'
         form_data_pass.append[form_row]
     
