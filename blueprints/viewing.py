@@ -74,6 +74,21 @@ dynamic_data = [
     {"id": 3, "name": "Charlie", "age": 35, "email": "charlie@example.com"}
 ]
 
+keys = dynamic_data[0].keys()
+
+column_size_json = {}
+
+for k in keys:
+    column_size_json[k] = 0
+
+print(column_size_json)
+    
+'''
+for dd in dynamic_data:
+    for attribute, value in d.items():
+        attribute, value)
+'''
+
 @viewing_bp.route('/dynamic_table')
 def dynamic_table():
     # Calculate maximum width for each column
