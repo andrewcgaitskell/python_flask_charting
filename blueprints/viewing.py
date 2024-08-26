@@ -139,13 +139,13 @@ def view_details(subject_in, item_id):
     form_data = []
 
     # Iterating over key-value pairs
-    for key, value in form_data.items():
-        record = form_metadata['field']==key
+    for form_item in form_data:
+        field_record = form_metadata['field']==form_item['name']
         form_row = {}
-        form_row['name'] = record['name']
-        form_row['label'] = record['name']
-        form_row['type']= record['name']
-        form_row['required']= record['name']
+        form_row['name'] = field_record['name']
+        form_row['label'] = field_record['label']
+        form_row['type']= field_record['type']
+        form_row['required']= 'True'
         form_data.append[form_row]
     
     
