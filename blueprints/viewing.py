@@ -86,11 +86,14 @@ def dynamic_table():
 
     print(column_widths)
     
-    # Convert character counts to pixel widths (assuming 10 pixels per character)
-    column_widths_px = {col: width * 10 for col, width in column_widths.items()}
-
-    print(column_widths_px)
+    # Calculate the total width
+    total_width = sum(column_widths.values())
     
-    return render_template('tables/dynamic_widths.html', data=dynamic_data, column_widths=column_widths_px)
+    # Calculate column widths as percentages
+    column_widths = {col: (width / total_widths) * 100 for col, width in column_widths.items()}
+    
+    print(column_widths)
+    
+    return render_template('tables/dynamic_widths.html', data=dynamic_data, column_widths=column_widths)
 
 
