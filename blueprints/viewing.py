@@ -103,6 +103,8 @@ form_metadata = [
 {'field':'plot_png','label':'Plot PNG','type':'textarea','default_value':'plot_png'}
 ]
 
+# Convert list to dictionary with 'name' as the key
+form_label_dict = {record['field']: record for record in form_metadata}
 
 @viewing_bp.route('/selection_table')
 def selection_table():
@@ -126,6 +128,7 @@ def view_details(subject_in, item_id):
     subject_data = Client.read(subject=subject_in, id=item_id)
     
     form_data = subject_data[0]
+    print(form_data)
     '''
     form_data = [
         {"name": "first_name", "label": "First Name", "type": "text", "required": True},
@@ -140,7 +143,7 @@ def view_details(subject_in, item_id):
 
     # Iterating over key-value pairs
     for form_item in form_data:
-        field_record = form_metadata['field']==form_item['name']
+        form_row_record = form_label_dict.get(form_item['name'], None)
         form_row = {}
         form_row['name'] = field_record['name']
         form_row['label'] = field_record['label']
