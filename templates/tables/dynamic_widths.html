@@ -27,6 +27,7 @@
                 {% for column, width in column_widths.items() %}
                       <th style="width: {{ width }}%;">{{ column.capitalize() }}</th>
                 {% endfor %}
+               <th style="width: 5%;">View</th>
          </tr>
         </thead>
         <tbody>
@@ -35,6 +36,10 @@
                         {% for column in column_widths.keys() %}
                             <td>{{ row[column] }}</td>
                         {% endfor %}
+                        <td>
+                        <!-- Link to the chart route with the selected item ID -->
+                        <a href="{{ url_for('viewing_dp.view_details', id=row.id) }}">View Detail</a>
+                        </td>
                     </tr>
                 {% endfor %}
         </tbody>
