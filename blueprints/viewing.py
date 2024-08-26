@@ -150,13 +150,13 @@ def dynamic_subject(subject_in):
         # Create a new list of dictionaries with only the selected keys
         filtered_data = [{key: item[key] for key in keys_to_keep} for item in subject_data]
     else:
-        filtered_data = subject_data
-        
-    
-    # Create a new list of dictionaries with only the selected keys
-    filtered_data = [{key: item[key] for key in keys_to_keep} for item in subject_data]
+        try:
+            keys_to_keep = ['id', 'name']
+            # Create a new list of dictionaries with only the selected keys
+            filtered_data = [{key: item[key] for key in keys_to_keep} for item in subject_data]
+        except:
+            filtered_data = subject_data
 
-    
     column_widths_in_characters = get_column_sizes(filtered_data)
     
     # Calculate the total width
