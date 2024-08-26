@@ -88,17 +88,25 @@ for dd in dynamic_data:
 
 print(column_size_json)
 
+## optimised!
+
+def get_column_sizes(dynamic_data_in):
+    # Initialize dictionary to store maximum length of each column
+    column_size_json = {}
+    
+    # Iterate through each dictionary in the list
+    for item in dynamic_data:
+        for key, value in item.items():
+            # Update the maximum length for each key
+            column_size_json[key] = max(column_size_json.get(key, 0), len(str(value)))
+    
+    return column_size_json
+
 @viewing_bp.route('/dynamic_table')
 def dynamic_table():
     # Calculate maximum width for each column
-    column_widths_in_characters = {
-        "id": max(len(str(row["id"])) for row in dynamic_data),
-        "name": max(len(row["name"]) for row in dynamic_data),
-        "age": max(len(str(row["age"])) for row in dynamic_data),
-        "email": max(len(row["email"]) for row in dynamic_data),
-    }
-
-    print(column_widths_in_characters)
+    
+    column_widths_in_characters = get_column_sizes(dynamic_data)
     
     # Calculate the total width
     total_width = sum(column_widths_in_characters.values())
