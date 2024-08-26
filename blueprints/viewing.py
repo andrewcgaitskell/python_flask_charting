@@ -126,6 +126,28 @@ def view_details(subject_in, item_id):
     subject_data = Client.read(subject=subject_in, id=item_id)
     
     form_data = subject_data[0]
+    '''
+    form_data = [
+        {"name": "first_name", "label": "First Name", "type": "text", "required": True},
+        {"name": "last_name", "label": "Last Name", "type": "text", "required": True},
+        {"name": "email", "label": "Email", "type": "email", "required": True},
+        {"name": "password", "label": "Password", "type": "password", "required": True},
+        {"name": "gender", "label": "Gender", "type": "select", "options": ["Male", "Female", "Other"]},
+        {"name": "bio", "label": "Bio", "type": "textarea"}
+    ]
+    '''
+    form_data = []
+
+    # Iterating over key-value pairs
+    for key, value in form_data.items():
+        record = form_metadata['field']==key
+        form_row = {}
+        form_row['name'] = record['name']
+        form_row['label'] = record['name']
+        form_row['type']= record['name']
+        form_row['required']= record['name']
+        form_data.append[form_row]
+    
     
     if not subject_data:
         return "Item not found", 404
