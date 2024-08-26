@@ -74,7 +74,7 @@ dynamic_data = [
     {"id": 3, "name": "Charlie", "age": 35, "email": "charlie@example.com"}
 ]
 
-@app.route('/dynamic_table')
+@viewing_bp.route('/dynamic_table')
 def dynamic_table():
     # Pass the data to the Jinja2 template
     return render_template('tables/dynamic_table.html', data=dynamic_data)
