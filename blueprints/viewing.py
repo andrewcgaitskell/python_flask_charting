@@ -82,6 +82,7 @@ def view_chart():
     #return template.render(chart_data=chart_data)
     return render_template('charts/chart.html', chart_data=chart_data)
 
+'''
 # Example list of dictionaries
 dynamic_data = [
     {"id": 1, "name": "Alice", "age": 30, "email": "alice@example.com"},
@@ -102,6 +103,7 @@ for dd in dynamic_data:
             column_size_json[attribute] =  len(str(value))
 
 print(column_size_json)
+'''
 
 ## optimised!
 
@@ -110,7 +112,7 @@ def get_column_sizes(dynamic_data_in):
     column_size_json = {}
     
     # Iterate through each dictionary in the list
-    for item in dynamic_data:
+    for item in dynamic_data_in:
         for key, value in item.items():
             # Update the maximum length for each key
             column_size_json[key] = max(column_size_json.get(key, 0), len(str(value)))
