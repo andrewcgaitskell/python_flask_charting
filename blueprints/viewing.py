@@ -77,23 +77,23 @@ dynamic_data = [
 @viewing_bp.route('/dynamic_table')
 def dynamic_table():
     # Calculate maximum width for each column
-    column_widths = {
+    column_widths_in_characters = {
         "id": max(len(str(row["id"])) for row in dynamic_data),
         "name": max(len(row["name"]) for row in dynamic_data),
         "age": max(len(str(row["age"])) for row in dynamic_data),
         "email": max(len(row["email"]) for row in dynamic_data),
     }
 
-    print(column_widths)
+    print(column_widths_in_characters)
     
     # Calculate the total width
-    total_width = sum(column_widths.values())
+    total_width = sum(column_widths_in_characters.values())
     
     # Calculate column widths as percentages
-    column_widths = {col: (width / total_widths) * 100 for col, width in column_widths.items()}
+    column_widths_as_percentage = {col: (width / total_widths) * 100 for col, width in column_widths_in_characters.items()}
     
-    print(column_widths)
+    print(column_widths_as_percentage)
     
-    return render_template('tables/dynamic_widths.html', data=dynamic_data, column_widths=column_widths)
+    return render_template('tables/dynamic_widths.html', data=dynamic_data, column_widths=column_widths_as_percentage)
 
 
