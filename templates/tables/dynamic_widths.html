@@ -23,22 +23,20 @@
 
     <table>
         <thead>
-            <tr>
-                <th style="width: {{ column_widths['id'] }}%;">ID</th>
-                <th style="width: {{ column_widths['name'] }}%;">Name</th>
-                <th style="width: {{ column_widths['age'] }}%;">Age</th>
-                <th style="width: {{ column_widths['email'] }}%;">Email</th>
-            </tr>
+           <tr>
+                {% for column, width in column_widths.items() %}
+                      <th style="width: {{ width }}%;">{{ column.capitalize() }}</th>
+                {% endfor %}
+         </tr>
         </thead>
         <tbody>
-            {% for row in data %}
-                <tr>
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.name }}</td>
-                    <td>{{ row.age }}</td>
-                    <td>{{ row.email }}</td>
-                </tr>
-            {% endfor %}
+                {% for row in data %}
+                    <tr>
+                        {% for column in column_widths.keys() %}
+                            <td>{{ row[column] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
         </tbody>
     </table>
 </body>
