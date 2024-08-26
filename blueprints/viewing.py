@@ -185,3 +185,16 @@ def dynamic_subject(subject_in):
     print(column_widths_as_percentage)
     
     return render_template('tables/dynamic_widths.html', data=subject_data, column_widths=column_widths_as_percentage)
+
+
+@viewing_bp.route('/dynamic_form')
+def dynamic_form():
+    form_data = [
+        {"name": "first_name", "label": "First Name", "type": "text", "required": True},
+        {"name": "last_name", "label": "Last Name", "type": "text", "required": True},
+        {"name": "email", "label": "Email", "type": "email", "required": True},
+        {"name": "password", "label": "Password", "type": "password", "required": True},
+        {"name": "gender", "label": "Gender", "type": "select", "options": ["Male", "Female", "Other"]},
+        {"name": "bio", "label": "Bio", "type": "textarea"}
+    ]
+    return render_template('tables/dynamic_form.html', form_data=form_data)
