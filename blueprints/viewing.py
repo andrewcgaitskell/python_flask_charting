@@ -66,6 +66,8 @@ def view_details(subject_in, item_id):
     
     subject_data = Client.read(subject=subject_in, id=item_id)
     
+    form_data = subject_data[0]
+    
     if not subject_data:
         return "Item not found", 404
     
@@ -74,7 +76,7 @@ def view_details(subject_in, item_id):
     }
     
     # Pass the selected item's data to the chart template
-    return render_template('tables/view_details.html', data=subject_data, dropdown_options=dropdown_options)
+    return render_template('tables/view_details.html', data=form_data, dropdown_options=dropdown_options)
 
 
 @viewing_bp.route('/charts')
