@@ -82,7 +82,7 @@ for k in keys:
     column_size_json[k] = 0
     
 for dd in dynamic_data:
-    for attribute, value in d.items():
+    for attribute, value in dd.items():
         if column_size_json[attribute] < len(value):
             column_size_json[attribute] =  len(value)
 
