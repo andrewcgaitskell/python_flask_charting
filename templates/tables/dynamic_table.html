@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table with Filtering</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .filter-input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Table with Filtering</h1>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <!-- Generate table headers and filter inputs dynamically -->
+                {% if data %}
+                    {% for key in data[0].keys() %}
+                        <th>
+                            {{ key.capitalize() }}
+                            <input type="text" class="filter-input" data-column="{{ loop.index0 }}" placeholder="Filter {{ key }}">
+                        </th>
+                    {% endfor %}
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Generate table rows dynamically -->
+            {% for item in data %}
+                <tr>
+                    {% for key in item.keys() %}
+                        <td>{{ item[key] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        // Function to filter table rows based on input values
+        function filterTable() {
+            // Get all filter inputs
+            const filters = document.querySelectorAll('.filter-input');
+            // Get all table rows
+            const rows = document.querySelectorAll('#dataTable tbody tr');
+
+            rows.forEach(row => {
+                let showRow = true;
+
+                filters.forEach(filter => {
+                    const columnIndex = filter.getAttribute('data-column');
+                    const filterValue = filter.value.toLowerCase();
+                    const cellText = row.cells[columnIndex].textContent.toLowerCase();
+
+                    // Hide the row if it doesn't match the filter value
+                    if (!cellText.includes(filterValue)) {
+                        showRow = false;
+                    }
+                });
+
+                // Show or hide row based on filtering
+                row.style.display = showRow ? '' : 'none';
+            });
+        }
+
+        // Add event listeners to filter inputs
+        document.querySelectorAll('.filter-input').forEach(input => {
+            input.addEventListener('input', filterTable);
+        });
+    </script>
+</body>
+</html>
