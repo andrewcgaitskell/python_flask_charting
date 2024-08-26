@@ -136,7 +136,7 @@ def view_details(subject_in, item_id):
         {"name": "bio", "label": "Bio", "type": "textarea"}
     ]
     '''
-    form_data = []
+    form_data_pass = []
 
     # Iterating over key-value pairs
     for form_item in form_data:
@@ -146,7 +146,7 @@ def view_details(subject_in, item_id):
         form_row['label'] = field_record['label']
         form_row['type']= field_record['type']
         form_row['required']= 'True'
-        form_data.append[form_row]
+        form_data_pass.append[form_row]
     
     
     if not subject_data:
@@ -157,9 +157,9 @@ def view_details(subject_in, item_id):
     }
     
     # Pass the selected item's data to the chart template
-    print(form_data)
+    print(form_data_pass)
     
-    return render_template('tables/view_details.html', data=form_data, dropdown_options=dropdown_options)
+    return render_template('tables/view_details.html', data=form_data_pass, dropdown_options=dropdown_options)
 
 
 @viewing_bp.route('/charts')
