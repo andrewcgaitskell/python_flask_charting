@@ -149,12 +149,6 @@ def dynamic_subject(subject_in):
         keys_to_keep = ['id', 'data_reference']
         # Create a new list of dictionaries with only the selected keys
         filtered_data = [{key: item[key] for key in keys_to_keep} for item in subject_data]
-    '''
-    elif subject_in = 'data_display':
-        keys_to_keep = ['id', 'name']
-        # Create a new list of dictionaries with only the selected keys
-        filtered_data = [{key: item[key] for key in keys_to_keep} for item in subject_data]
-    '''
     else:
         filtered_data = subject_data
         
