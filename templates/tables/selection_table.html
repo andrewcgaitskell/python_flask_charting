@@ -24,7 +24,7 @@
                 <td>{{ item.value }}</td>
                 <td>
                     <!-- Link to the chart route with the selected item ID -->
-                    <a href="{{ url_for('chart', item_id=item.id) }}">View Chart</a>
+                    <a href="{{ url_for('viewing_bp.selected_chart', item_id=item.id) }}">View Chart</a>
                 </td>
             </tr>
             {% endfor %}
