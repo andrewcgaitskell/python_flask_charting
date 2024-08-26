@@ -80,14 +80,13 @@ column_size_json = {}
 
 for k in keys:
     column_size_json[k] = 0
-
-print(column_size_json)
     
-'''
 for dd in dynamic_data:
     for attribute, value in d.items():
-        attribute, value)
-'''
+        if column_size_json[attribute] < len(value):
+            column_size_json[attribute] =  len(value)
+
+print(column_size_json)
 
 @viewing_bp.route('/dynamic_table')
 def dynamic_table():
