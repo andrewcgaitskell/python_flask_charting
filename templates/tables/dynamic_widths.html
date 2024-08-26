@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table with Column Widths</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Table with Dynamic Column Widths</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: {{ column_widths['id'] }}px;">ID</th>
+                <th style="width: {{ column_widths['name'] }}px;">Name</th>
+                <th style="width: {{ column_widths['age'] }}px;">Age</th>
+                <th style="width: {{ column_widths['email'] }}px;">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.age }}</td>
+                    <td>{{ row.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
