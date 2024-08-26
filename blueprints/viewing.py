@@ -141,11 +141,11 @@ def dynamic_subject(subject_in):
     subject_data = Client.read(subject=subject_in)
 
     # Keys to keep
-    if subject_in = 'plot':
+    if subject_in == 'plot':
         keys_to_keep = ['id', 'name']
         # Create a new list of dictionaries with only the selected keys
         filtered_data = [{key: item[key] for key in keys_to_keep} for item in subject_data]
-    elif subject_in = 'data':
+    elif subject_in == 'data':
         keys_to_keep = ['id', 'data_reference']
         # Create a new list of dictionaries with only the selected keys
         filtered_data = [{key: item[key] for key in keys_to_keep} for item in subject_data]
