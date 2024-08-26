@@ -67,3 +67,14 @@ def view_chart():
     #return template.render(chart_data=chart_data)
     return render_template('charts/chart.html', chart_data=chart_data)
 
+# Example list of dictionaries
+dynamic_data = [
+    {"id": 1, "name": "Alice", "age": 30, "email": "alice@example.com"},
+    {"id": 2, "name": "Bob", "age": 25, "email": "bob@example.com"},
+    {"id": 3, "name": "Charlie", "age": 35, "email": "charlie@example.com"}
+]
+
+@app.route('/dynamic_table')
+def dynamic_table():
+    # Pass the data to the Jinja2 template
+    return render_template('tables/dynamic_table.html', data=dynamic_data)
