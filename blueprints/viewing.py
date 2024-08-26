@@ -83,9 +83,13 @@ def dynamic_table():
         "age": max(len(str(row["age"])) for row in dynamic_data),
         "email": max(len(row["email"]) for row in dynamic_data),
     }
+
+    print(column_widths)
     
     # Convert character counts to pixel widths (assuming 10 pixels per character)
     column_widths_px = {col: width * 10 for col, width in column_widths.items()}
+
+    print(column_widths_px)
     
     return render_template('tables/dynamic_widths.html', data=dynamic_data, column_widths=column_widths_px)
 
