@@ -76,7 +76,7 @@ def generate_form_data_from_schema(subject_in, data_in):
 @forms_bp.route('/edit/<subject_in>/<id_in>', methods=['GET', 'POST'])
 def edit_model(subject_in,id_in):
     schema = Client.schema(subject=subject_in)
-    data = Client.schema(subject=subject_in, id=id_in)
+    data = Client.read(subject=subject_in, id=id_in)
     if not schema:
         return "Model not found", 404
 
