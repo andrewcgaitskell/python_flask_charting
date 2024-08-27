@@ -112,8 +112,9 @@ def list_items(subject):
 def create_item(subject):
     if request.method == 'POST':
         # Submit form data to FastAPI
-        form_data = request.form.to_dict()
-        Client.create(data=form_data)
+        form_dict = request.form.to_dict()
+        print("form_dict>>>>>>>>>>>>>>>>>>>>", form_dict)
+        Client.create(data=form_dict)
         return redirect(url_for('list_items', subject=subject))
     
     # Fetch the model schema to dynamically generate the form
