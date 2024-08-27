@@ -37,6 +37,9 @@ def generate_form_data_from_schema(subject_in):
     properties = schema.get("properties", {})
 
     for field_name, field_info in properties.items():
+        print("field_info >>>>>" , field_info)
+        print("field_info[0] >>>>>" , field_info[0])
+        
         field_label = field_info.get("title", field_name.capitalize())
         field_type = field_info.get("type", "text")
 
