@@ -30,7 +30,8 @@ Client = DMToolsClient(MY_DMTOOLS_USERID, MY_DMTOOLS_APIKEY)
 forms_bp = Blueprint('forms_bp', __name__)
 
 # Generate form data from the model schema
-def generate_form_data_from_schema(subject_in):
+def generate_form_data_from_schema(subject_in, data_in):
+    data = data_in[0]
     form_data = {}
     schema = Client.schema(subject=subject_in)
     print(schema)
@@ -66,15 +67,16 @@ def generate_form_data_from_schema(subject_in):
         form_data[field_name] = {
             "label": field_label,
             "type": input_type,
-            "value": None,
+            "value": data[field_name]
         }
 
     
     return form_data
 
-@forms_bp.route('/edit/<subject_in>', methods=['GET', 'POST'])
+@forms_bp.route('/edit/<subject_in>/<id_in>', methods=['GET', 'POST'])
 def edit_model(subject_in):
     schema = Client.schema(subject=subject_in)
+    data = Client.schema(subject=subject_in, id=id_in)
     if not schema:
         return "Model not found", 404
 
