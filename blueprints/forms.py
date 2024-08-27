@@ -117,7 +117,6 @@ def create_item(subject):
         return redirect(url_for('list_items', subject=subject))
     
     # Fetch the model schema to dynamically generate the form
-    schema = Client.schema(subject=subject_in)
     empty_schema = schema()
     form_data = generate_form_data_from_schema(subject_in, empty_schema)
     
@@ -131,8 +130,8 @@ def update_item(subject, item_id):
         return redirect(url_for('list_items', subject=subject))
     
     item = Client.read(subject=subject,id=item_id)
-    schema = Client.schema(subject=subject)
-    form_data = generate_form_data_from_schema(subject_in, item)
+    
+    form_data = generate_form_data_from_schema(subject, item)
     
     return render_template('forms/schema_form.html', form_data=form_data)
 
