@@ -96,5 +96,47 @@ def edit_model(subject_in,id_in):
     form_data = generate_form_data_from_schema(subject_in, data)
     return render_template('forms/schema_form.html', form_data=form_data, action=f'/edit/{subject_in}/{id_in}')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@forms_bp.route('/list_subjects')
+def list():
+    # List available models and their items
+    subjects = ["data", "data_display", "ownership", "plot"]
+    return render_template('index.html', subjects=subjects)
+
+@app.route('/list_items/<subject>/')
+def list_items(subject):
+    # Fetch list of items for the model from FastAPI
+    items = Client.read(subject=subject)
+    return render_template('list_items.html', subject=subject, items=items)
+
+@app.route('/<subject>/create/', methods=['GET', 'POST'])
+def create_item(subject):
+    if request.method == 'POST':
+        # Submit form data to FastAPI
+        form_data = request.form.to_dict()
+        Client.create(data=form_data)
+        return redirect(url_for('list_items', subject=subject))
+    
+    # Fetch the model schema to dynamically generate the form
+    schema = Client.schema(subject=subject_in)
+    empty_schema = schema()
+    form_data = generate_form_data_from_schema(subject_in, empty_schema)
+    
+    return render_template('forms/schema_form.html', form_data=form_data)
+
+@app.route('/<subject>/update/<item_id>/', methods=['GET', 'POST'])
+def update_item(subject, item_id):
+    if request.method == 'POST':
+        form_data = request.form.to_dict()
+        Client.update(id=item_id, data=form_data)
+        return redirect(url_for('list_items', subject=subject))
+    
+    item = Client.read(subject=subject,id=item_id)
+    schema = Client.schema(subject=subject)
+    form_data = generate_form_data_from_schema(subject_in, item)
+    
+    return render_template('forms/schema_form.html', form_data=form_data)
+
+@app.route('/<subject>/delete/<item_id>/')
+def delete_item(subject, item_id):
+    Client.delete(id=item_id,subject=subject)
+    return redirect(url_for('list_items', subject=subject))
