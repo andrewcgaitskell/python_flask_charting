@@ -38,7 +38,7 @@ def generate_form_data_from_schema(subject_in):
 
     for field_name, field_info in properties.items():
         print("field_info >>>>>" , field_info)
-        print("field_info[0] >>>>>" , field_info[0])
+        print("field_info['anyOf'][0]['type'] >>>>>" , field_info['anyOf'][0]]['type'])
         
         field_label = field_info.get("title", field_name.capitalize())
         field_type = field_info.get("type", "text")
