@@ -118,7 +118,7 @@ def create_item(subject):
     
     # Fetch the model schema to dynamically generate the form
     empty_schema = Client.read(subject=subject,id=-1)
-    form_data = generate_form_data_from_schema(subject_in, empty_schema)
+    form_data = generate_form_data_from_schema(subject, empty_schema)
     
     return render_template('forms/schema_form.html', form_data=form_data)
 
