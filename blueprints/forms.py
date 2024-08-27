@@ -115,6 +115,9 @@ def create_item(subject):
         form_dict = request.form.to_dict()
         print("form_dict>>>>>>>>>>>>>>>>>>>>", form_dict)
         form_dict.pop('id', None)
+        form_dict.pop('created_at', None)
+        form_dict.pop('modified_at', None)
+        form_dict.pop('archived_at', None)
         Client.create(data=form_dict)
         return redirect(url_for('forms_bp.list_items', subject=subject))
     
