@@ -59,7 +59,7 @@ def generate_form_data_from_schema(subject_in):
         form_data[field_name] = {
             "label": field_label,
             "type": input_type,
-            "value": getattr(model_instance, field_name, ""),
+            "value": None,
         }
 
     
