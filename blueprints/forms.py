@@ -116,7 +116,7 @@ def create_item(subject):
         print("form_dict>>>>>>>>>>>>>>>>>>>>", form_dict)
         form_dict.pop('id', None)
         Client.create(data=form_dict)
-        return redirect(url_for('list_items', subject=subject))
+        return redirect(url_for('forms_bp.list_items', subject=subject))
     
     # Fetch the model schema to dynamically generate the form
     empty_schema = Client.read(subject=subject,id=-1)
@@ -129,7 +129,7 @@ def update_item(subject, item_id):
     if request.method == 'POST':
         form_data = request.form.to_dict()
         Client.update(id=item_id, data=form_data)
-        return redirect(url_for('list_items', subject=subject))
+        return redirect(url_for('forms_bp.list_items', subject=subject))
     
     item = Client.read(subject=subject,id=item_id)
     
@@ -140,4 +140,4 @@ def update_item(subject, item_id):
 @forms_bp.route('/<subject>/delete/<item_id>/')
 def delete_item(subject, item_id):
     Client.delete(id=item_id,subject=subject)
-    return redirect(url_for('list_items', subject=subject))
+    return redirect(url_for('forms_bp.list_items', subject=subject))
