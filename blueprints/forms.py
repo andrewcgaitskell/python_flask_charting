@@ -53,7 +53,7 @@ def edit_model(subject_in):
         return "Form submitted successfully!"
 
     form_data = generate_form_data_from_schema(subject_in)
-    return render_template('forms/pydantic_form.html', form_data=form_data, action=f'/edit/{model_name}')
+    return render_template('forms/schema_form.html', form_data=form_data, action=f'/edit/{model_name}')
 
 if __name__ == '__main__':
     app.run(debug=True)
