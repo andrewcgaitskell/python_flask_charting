@@ -56,6 +56,8 @@ def generate_form_data_from_schema(subject_in):
         else:
             input_type = "text"  # Fallback to text for unknown types
 
+        print("field_type>>>>" , field_type, "  label>>>>",  field_label,"type>>>>>", input_type)
+        
         form_data[field_name] = {
             "label": field_label,
             "type": input_type,
