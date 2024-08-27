@@ -38,16 +38,14 @@ def generate_form_data_from_schema(subject_in):
 
     for field_name, field_info in properties.items():
         print("field_info >>>>>" , field_info)
-        print("field_info['anyOf'][0]['type'] >>>>>" , field_info['anyOf'][0]['type'])
-        print("field_info['anyOf'][0]['format'] >>>>>" , field_info['anyOf'][0]['format'])
-        
+      
         field_label = field_info.get("title", field_name.capitalize())
         field_type = field_info['anyOf'][0]['type']
         try:        
             field_format = field_info['anyOf'][0]['format']
         except:
             field_format = 'text'
-
+        
         # Determine the input type based on the Pydantic field type
         
         if field_type == "integer":
@@ -63,7 +61,7 @@ def generate_form_data_from_schema(subject_in):
         else:
             input_type = "text"  # Fallback to text for unknown types
 
-        print("field_type>>>>" , field_type, "  label>>>>",  field_label,"type>>>>>", input_type)
+        print("field_type>>>>" , field_type, " field_format >>", field_format,"  label>>>>",  field_label,"  input type>>>>>", input_type)
         
         form_data[field_name] = {
             "label": field_label,
