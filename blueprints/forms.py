@@ -100,7 +100,7 @@ def edit_model(subject_in,id_in):
 def list():
     # List available models and their items
     subjects = ["data", "data_display", "ownership", "plot"]
-    return render_template('index.html', subjects=subjects)
+    return render_template('list_subjects.html', subjects=subjects)
 
 @app.route('/list_items/<subject>/')
 def list_items(subject):
