@@ -31,6 +31,7 @@ forms_bp = Blueprint('forms_bp', __name__)
 def generate_form_data_from_schema(subject_in):
     form_data = {}
     schema = Client.schema(subject=subject_in)
+    print(schema)
     properties = schema.get("properties", {})
     for field_name, field in properties.items():
         form_data[field_name] = {
