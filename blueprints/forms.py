@@ -43,7 +43,10 @@ def generate_form_data_from_schema(subject_in):
         
         field_label = field_info.get("title", field_name.capitalize())
         field_type = field_info['anyOf'][0]['type']
-        field_format = field_info['anyOf'][0]['format']
+        try:        
+            field_format = field_info['anyOf'][0]['format']
+        except:
+            field_format = 'text'
 
         # Determine the input type based on the Pydantic field type
         
