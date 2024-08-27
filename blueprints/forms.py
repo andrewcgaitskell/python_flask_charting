@@ -39,20 +39,21 @@ def generate_form_data_from_schema(subject_in):
     for field_name, field_info in properties.items():
         print("field_info >>>>>" , field_info)
         print("field_info['anyOf'][0]['type'] >>>>>" , field_info['anyOf'][0]['type'])
+        print("field_info['anyOf'][0]['format'] >>>>>" , field_info['anyOf'][0]['format'])
         
         field_label = field_info.get("title", field_name.capitalize())
-        field_type = field_info.get("type", "text")
+        field_type = field_info['anyOf'][0]['type']
+        field_format = field_info['anyOf'][0]['format']
 
         # Determine the input type based on the Pydantic field type
-        if field_type == str:
-            input_type = "text"
-        elif field_type == int:
+        
+        if field_type == "integer":
             input_type = "number"
-        elif field_type == float:
+        elif field_type == "float":
             input_type = "number"
-        elif field_type == bool:
+        elif field_type == "bool":
             input_type = "checkbox"
-        elif field_type == datetime:
+        elif field_format == "date-time":
             input_type = "datetime-local"
         # Add more type mappings as needed
 
