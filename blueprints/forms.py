@@ -100,13 +100,13 @@ def edit_model(subject_in,id_in):
 def list():
     # List available models and their items
     subjects = ["data", "data_display", "ownership", "plot", "experiment", "limit_display"]
-    return render_template('list_subjects.html', subjects=subjects)
+    return render_template('forms/list_subjects.html', subjects=subjects)
 
 @forms_bp.route('/list_items/<subject>/')
 def list_items(subject):
     # Fetch list of items for the model from FastAPI
     items = Client.read(subject=subject)
-    return render_template('list_items.html', subject=subject, items=items)
+    return render_template('forms/list_items.html', subject=subject, items=items)
 
 @forms_bp.route('/<subject>/create/', methods=['GET', 'POST'])
 def create_item(subject):
