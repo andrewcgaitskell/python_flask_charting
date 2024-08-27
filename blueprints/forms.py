@@ -114,6 +114,7 @@ def create_item(subject):
         # Submit form data to FastAPI
         form_dict = request.form.to_dict()
         print("form_dict>>>>>>>>>>>>>>>>>>>>", form_dict)
+        form_dict.pop('id', None)
         Client.create(data=form_dict)
         return redirect(url_for('list_items', subject=subject))
     
