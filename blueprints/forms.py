@@ -36,8 +36,8 @@ def generate_form_data_from_schema(subject_in):
     for field_name, field in properties.items():
         form_data[field_name] = {
             "label": field.get("title", field_name.capitalize()),
-            "type": "text" if field.get("type") == "string" else "number",
-            "value": ""
+            "type": "text",
+            "value": "aaa"
         }
     return form_data
 
