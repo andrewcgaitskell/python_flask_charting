@@ -33,12 +33,34 @@ def generate_form_data_from_schema(subject_in):
     schema = Client.schema(subject=subject_in)
     print(schema)
     properties = schema.get("properties", {})
-    for field_name, field in properties.items():
+
+    for field_name, field_info in properties.items():
+        field_label = field_info.get("title", field_name.capitalize())
+        field_type = field_info.get("type", "text")
+
+        # Determine the input type based on the Pydantic field type
+        if field_type == str:
+            input_type = "text"
+        elif field_type == int:
+            input_type = "number"
+        elif field_type == float:
+            input_type = "number"
+        elif field_type == bool:
+            input_type = "checkbox"
+        elif field_type == datetime:
+            input_type = "datetime-local"
+        # Add more type mappings as needed
+
+        else:
+            input_type = "text"  # Fallback to text for unknown types
+
         form_data[field_name] = {
-            "label": field.get("title", field_name.capitalize()),
-            "type": "text",
-            "value": "aaa"
+            "label": field_label,
+            "type": input_type,
+            "value": getattr(model_instance, field_name, ""),
         }
+
+    
     return form_data
 
 @forms_bp.route('/edit/<subject_in>', methods=['GET', 'POST'])
