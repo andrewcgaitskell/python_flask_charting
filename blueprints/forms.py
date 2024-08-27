@@ -99,7 +99,7 @@ def edit_model(subject_in,id_in):
 @forms_bp.route('/list_subjects')
 def list():
     # List available models and their items
-    subjects = ["data", "data_display", "ownership", "plot", "experiment", "limit_display"]
+    subjects = ["data", "data_display", "ownership", "plot", "dropdown","graph", "limit_display"]
     return render_template('forms/list_subjects.html', subjects=subjects)
 
 @forms_bp.route('/list_items/<subject>/')
