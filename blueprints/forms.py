@@ -86,8 +86,8 @@ def edit_model(subject_in,id_in):
         # You can validate this data or send it back to the FastAPI server
         return "Form submitted successfully!"
 
-    form_data = generate_form_data_from_schema(subject_in)
-    return render_template('forms/schema_form.html', form_data=form_data, action=f'/edit/{subject_in}')
+    form_data = generate_form_data_from_schema(subject_in, data)
+    return render_template('forms/schema_form.html', form_data=form_data, action=f'/edit/{subject_in}/{id_in}')
 
 if __name__ == '__main__':
     app.run(debug=True)
