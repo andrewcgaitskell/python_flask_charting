@@ -102,13 +102,13 @@ def list():
     subjects = ["data", "data_display", "ownership", "plot", "experiment", "limit_display"]
     return render_template('list_subjects.html', subjects=subjects)
 
-@app.route('/list_items/<subject>/')
+@forms_bp.route('/list_items/<subject>/')
 def list_items(subject):
     # Fetch list of items for the model from FastAPI
     items = Client.read(subject=subject)
     return render_template('list_items.html', subject=subject, items=items)
 
-@app.route('/<subject>/create/', methods=['GET', 'POST'])
+@forms_bp.route('/<subject>/create/', methods=['GET', 'POST'])
 def create_item(subject):
     if request.method == 'POST':
         # Submit form data to FastAPI
@@ -123,7 +123,7 @@ def create_item(subject):
     
     return render_template('forms/schema_form.html', form_data=form_data)
 
-@app.route('/<subject>/update/<item_id>/', methods=['GET', 'POST'])
+@forms_bp.route('/<subject>/update/<item_id>/', methods=['GET', 'POST'])
 def update_item(subject, item_id):
     if request.method == 'POST':
         form_data = request.form.to_dict()
@@ -136,7 +136,7 @@ def update_item(subject, item_id):
     
     return render_template('forms/schema_form.html', form_data=form_data)
 
-@app.route('/<subject>/delete/<item_id>/')
+@forms_bp.route('/<subject>/delete/<item_id>/')
 def delete_item(subject, item_id):
     Client.delete(id=item_id,subject=subject)
     return redirect(url_for('list_items', subject=subject))
