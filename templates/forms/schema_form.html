@@ -1,0 +1,18 @@
+<!-- templates/forms/schema_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Form</title>
+</head>
+<body>
+    <form method="POST" action="{{ action }}">
+        {% for field_name, field in form_data.items() %}
+            <label for="{{ field_name }}">{{ field['label'] }}</label>
+            <input type="{{ field['type'] }}" id="{{ field_name }}" name="{{ field_name }}" value="{{ field['value'] }}">
+            <br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
