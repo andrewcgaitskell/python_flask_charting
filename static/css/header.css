@@ -1,18 +1,18 @@
- .header {
-            width : 100%;
-            height : 20px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: #DAA520;
-            color: black;
-            display: flex;
-            justify-content: center; /* Align horizontal */
-            align-items: center; /* Align vertical */
-            padding: 0;
-            border-style: solid;
-            border-width: 0px;
-            border-color: green;
-            font-size: 12px;
-        }
+.master-header {
+  width : 100%;
+  height : 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #DAA520;
+  color: black;
+  display: flex;
+  justify-content: center; /* Align horizontal */
+  align-items: center; /* Align vertical */
+  padding: 0;
+  border-style: solid;
+  border-width: 0px;
+  border-color: green;
+  font-size: 12px;
+  }
