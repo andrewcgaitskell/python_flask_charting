@@ -1,1 +1,19 @@
+.master-footer {
+            width : 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height : 20px;
+            background-color: #DAA520;
+            color: black;
+            display: flex;
+            justify-content: center; /* Align horizontal */
+            align-items: center; /* Align vertical */
+            padding: 0;
+            border-style: solid;
+            border-width: 0px;
+            border-color: green;
+            font-size: 12px;
+        }
 
