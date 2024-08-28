@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Template</title>
+    <link rel="stylesheet" href="localstyles.css"> 
+</head>
+<body>
+    <div class="master-container">
+    <div class="header">
+        <p>Header</p>
+    </div>
+
+    <div class="container">
+        <div class="square-container">
+            <div class="square-title-container">Chart Title</div>
+            <div class="square-vertical-text-container">Vertical Text</div>
+            <div class="square-description-container">
+               <p>Screen Width: <span id="width"></span>px</p>
+               <p>Screen Height: <span id="height"></span>px</p>
+            </div>
+            <div class="square-figure-container">Fig Reference: </div>
+        </div>
+        
+        <div class="oblong-container">
+            <div class="oblong-title-container">Oblong Title</div>
+            <div class="oblong-vertical-text-container">Obl Vert Text</div>
+            <div class="oblong-description-container">
+               <p>Legend Here!</p>
+            </div>
+            <div class="oblong-figure-container">oblong Reference: </div>
+        </div>
+        
+    </div>
+    <div class="footer">
+        <p>Footer</p>
+    </div>
+</div>
+<script>
+        // Function to update CSS variables with actual screen size
+        function updateScreenSizeVars() {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            // Update CSS variables
+            document.documentElement.style.setProperty('--screen-width', `${screenWidth}px`);
+            document.documentElement.style.setProperty('--screen-height', `${screenHeight}px`);
+
+            // Update content on the page
+            document.getElementById('width').textContent = screenWidth;
+            document.getElementById('height').textContent = screenHeight;
+        }
+
+        // Initial update on page load
+        updateScreenSizeVars();
+
+        // Update on window resize
+        window.addEventListener('resize', updateScreenSizeVars);
+    </script>
+</body>
+</html>
+
