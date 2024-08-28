@@ -3,12 +3,12 @@
 {% block title %}Line Chart{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/square.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/oblong.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chart_frame.css') }}">
     <script src="{{ url_for('static', filename='js/chart_frame.js') }}"></script>
 {% endblock %}
 
 {% block content %}
+ <div class="chart-container">
     <div class="square-container">
         <div class="square-title-container">Chart Title</div>
         <div class="square-vertical-text-container">Vertical Text</div>
@@ -27,6 +27,7 @@
         </div>
         <div class="oblong-figure-container">oblong Reference: </div>
     </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
