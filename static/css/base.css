@@ -27,17 +27,3 @@ p {
     border-color: black;
 }  
 
-.chart-container {
-            padding: 0px 0px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Align horizontal */
-            align-items: center; /* Align vertical */
-            width : calc(var(--screen-width) - 0px);
-            height : calc(var(--screen-height) - 20px);
-            background-color: blue;
-            border-style: solid;
-            border-width: 0px;
-            border-color: blue;
-            gap: 40px; 
-        }
