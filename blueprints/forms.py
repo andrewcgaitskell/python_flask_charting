@@ -102,6 +102,10 @@ def list():
     subjects = ["data", "data_display", "ownership", "plot", "dropdown","graph", "limit_display"]
     return render_template('forms/list_subjects.html', subjects=subjects)
 
+@forms_bp.route('/crud_table')
+def crud_table():
+    return render_template('forms/crud_table.html')
+
 @forms_bp.route('/list_items/<subject>/')
 def list_items(subject):
     # Fetch list of items for the model from FastAPI
