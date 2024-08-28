@@ -1,4 +1,15 @@
-<div class="container">
+ {% extends 'base/base.html' %}
+
+{% block title %}Line Chart{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/square.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/oblong.css') }}">
+    <script src="{{ url_for('static', filename='js/chart_frame.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
     <div class="square-container">
         <div class="square-title-container">Chart Title</div>
         <div class="square-vertical-text-container">Vertical Text</div>
@@ -19,3 +30,30 @@
     </div>
     
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Function to update CSS variables with actual screen size
+    function updateScreenSizeVars() {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        // Update CSS variables
+        document.documentElement.style.setProperty('--screen-width', `${screenWidth}px`);
+        document.documentElement.style.setProperty('--screen-height', `${screenHeight}px`);
+
+        // Update content on the page
+        document.getElementById('width').textContent = screenWidth;
+        document.getElementById('height').textContent = screenHeight;
+    }
+
+    // Initial update on page load
+    updateScreenSizeVars();
+
+    // Update on window resize
+    window.addEventListener('resize', updateScreenSizeVars);
+</script>
+{% endblock %}
+
+
