@@ -74,7 +74,10 @@ def matplotlib():
     #template = env.get_template('charts/matplotlib.html')
     #return template.render()
     return render_template('charts/matplotlib.html')
-    
+
+@charts_bp.route('/chart_frame')
+def chart_frame():
+    return render_template('charts/chart_frame.html')
 
 @charts_bp.route('/matplotlib_png.png')
 def matplotlib_png():
