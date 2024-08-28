@@ -1,0 +1,28 @@
+:root {
+    --screen-width: 100vw; /* Default fallback */
+    --screen-height: 100vh; /* Default fallback */
+}
+body {
+    margin: 0;
+    padding: 0;
+    height:100vh;
+    width:100vw;
+    font-family: Arial, sans-serif;
+    }
+
+p {
+    margin: 0;
+    padding: 0;  }
+    
+.master-container {
+    padding : 0;
+    height : 100vh;
+    width : 100vw;
+    position: relative;
+    margin: 0 auto; /* Centers the container horizontally */
+    padding: 0px; /* Adds padding inside the container */
+    background-color: #696969; /* Example background color */
+    border-style: solid;
+    border-width: 0px;
+    border-color: black;
+}  
