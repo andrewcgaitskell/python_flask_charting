@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table with CRUD and Filtering</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .filter-row input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 4px;
+        }
+        .filter-row th {
+            background-color: #eaeaea;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .actions input, .actions button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Table with CRUD Operations</h1>
+
+    <!-- Table -->
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            <!-- Filters Row -->
+            <tr class="filter-row">
+                <th><input type="text" id="idFilter" oninput="filterTable()" placeholder="Filter ID"></th>
+                <th><input type="text" id="nameFilter" oninput="filterTable()" placeholder="Filter Name"></th>
+                <th><input type="text" id="ageFilter" oninput="filterTable()" placeholder="Filter Age"></th>
+                <th><input type="text" id="emailFilter" oninput="filterTable()" placeholder="Filter Email"></th>
+                <th></th> <!-- Empty cell for alignment -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <!-- Form for Adding/Updating -->
+    <div class="actions">
+        <input type="hidden" id="recordId">
+        <input type="text" id="name" placeholder="Name">
+        <input type="number" id="age" placeholder="Age">
+        <input type="email" id="email" placeholder="Email">
+        <button onclick="addRecord()">Add Record</button>
+        <button onclick="updateRecord()">Update Record</button>
+        <button onclick="clearForm()">Clear Form</button>
+    </div>
+
+    <script>
+        // Sample JSON data
+        const data = [
+            { id: 1, name: 'John Doe', age: 30, email: 'john@example.com' },
+            { id: 2, name: 'Jane Smith', age: 25, email: 'jane@example.com' }
+        ];
+
+        // Render table from JSON data
+        function renderTable() {
+            const tableBody = document.querySelector('#dataTable tbody');
+            tableBody.innerHTML = '';
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.age}</td>
+                    <td>${item.email}</td>
+                    <td>
+                        <button onclick="editRecord(${item.id})">Edit</button>
+                        <button onclick="deleteRecord(${item.id})">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Add a record
+        function addRecord() {
+            const name = document.getElementById('name').value;
+            const age = parseInt(document.getElementById('age').value, 10);
+            const email = document.getElementById('email').value;
+
+            if (!name || isNaN(age) || !email) {
+                alert('Please fill all fields.');
+                return;
+            }
+
+            const newRecord = {
+                id: data.length ? Math.max(data.map(item => item.id)) + 1 : 1,
+                name,
+                age,
+                email
+            };
+
+            data.push(newRecord);
+            renderTable();
+            clearForm();
+        }
+
+        // Edit a record
+        function editRecord(id) {
+            const record = data.find(item => item.id === id);
+            if (record) {
+                document.getElementById('recordId').value = record.id;
+                document.getElementById('name').value = record.name;
+                document.getElementById('age').value = record.age;
+                document.getElementById('email').value = record.email;
+            }
+        }
+
+        // Update a record
+        function updateRecord() {
+            const id = parseInt(document.getElementById('recordId').value, 10);
+            const name = document.getElementById('name').value;
+            const age = parseInt(document.getElementById('age').value, 10);
+            const email = document.getElementById('email').value;
+
+            if (isNaN(id) || !name || isNaN(age) || !email) {
+                alert('Please fill all fields.');
+                return;
+            }
+
+            const record = data.find(item => item.id === id);
+            if (record) {
+                record.name = name;
+                record.age = age;
+                record.email = email;
+                renderTable();
+                clearForm();
+            }
+        }
+
+        // Delete a record
+        function deleteRecord(id) {
+            const index = data.findIndex(item => item.id === id);
+            if (index !== -1) {
+                data.splice(index, 1);
+                renderTable();
+            }
+        }
+
+        // Clear the form
+        function clearForm() {
+            document.getElementById('recordId').value = '';
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+            document.getElementById('email').value = '';
+        }
+
+        // Filter the table
+        function filterTable() {
+            const idFilter = document.getElementById('idFilter').value;
+            const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+            const ageFilter = document.getElementById('ageFilter').value;
+            const emailFilter = document.getElementById('emailFilter').value.toLowerCase();
+
+            const rows = document.querySelectorAll('#dataTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+                const id = cells[0].textContent;
+                const name = cells[1].textContent.toLowerCase();
+                const age = cells[2].textContent;
+                const email = cells[3].textContent.toLowerCase();
+
+                const isVisible = (!idFilter || id.includes(idFilter)) &&
+                                  (!nameFilter || name.includes(nameFilter)) &&
+                                  (!ageFilter || age.includes(ageFilter)) &&
+                                  (!emailFilter || email.includes(emailFilter));
+
+                row.style.display = isVisible ? '' : 'none';
+            });
+        }
+
+        // Initial render
+        renderTable();
+    </script>
+</body>
+</html>
