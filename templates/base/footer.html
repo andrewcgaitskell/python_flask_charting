@@ -1,6 +1,11 @@
-<div class="footer">
-    <div>
-        <span>© 2024 DMTools</span>
-      <li><a href="mailto:andrew@gaitskell.com">Contact</a></li>
-    </div>
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <script src="{{ url_for('static', filename='js/footer.js') }}"></script>
+{% endblock %}
+
+<footer class='master-footer'>
+<div>
+    <span>© 2024 DMTools</span>
+    <li><a href="mailto:andrew@gaitskell.com">Contact</a></li>
 </div>
+</footer>
