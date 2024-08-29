@@ -1,3 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Dynamic View{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dynamic_view.css') }}">
+    <script src="{{ url_for('static', filename='js/dynamic_view.js') }}"></script>
+{% endblock %}
+
+{% block content %}
 <h1>Dynamic Table with Filtering</h1>
 <!-- Table -->
 <table id="dataTable">
@@ -27,5 +37,14 @@
 <div class="actions">
     <button onclick="clearForm()">Clear Filters</button>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Function to update CSS variables with actual screen size
+</script>
+{% endblock %}
+
+
 
   
