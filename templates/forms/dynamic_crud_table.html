@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table with CRUD and Filtering</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .filter-row input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 4px;
+        }
+        .filter-row th {
+            background-color: #eaeaea;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .actions input, .actions button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Table with CRUD Operations</h1>
+
+    <!-- Table -->
+    <table id="dataTable">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column.label }}</th>
+                {% endfor %}
+                <th>Actions</th>
+            </tr>
+            <tr class="filter-row">
+                {% for column in columns %}
+                <th><input type="text" id="{{ column.key }}Filter" oninput="filterTable()" placeholder="Filter {{ column.label }}"></th>
+                {% endfor %}
+                <th></th> <!-- Empty cell for alignment -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                {% for column in columns %}
+                <td>{{ row[column.key] }}</td>
+                {% endfor %}
+                <td>
+                    <button onclick="editRecord({{ row['id'] }})">Edit</button>
+                    <button onclick="deleteRecord({{ row['id'] }})">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Form for Adding/Updating -->
+    <div class="actions">
+        <input type="hidden" id="recordId">
+        {% for column in columns if column.key != 'id' %}
+        <input type="text" id="{{ column.key }}" placeholder="{{ column.label }}">
+        {% endfor %}
+        <button onclick="addRecord()">Add Record</button>
+        <button onclick="updateRecord()">Update Record</button>
+        <button onclick="clearForm()">Clear Form</button>
+    </div>
+
+    <script>
+        // Initialize data from Flask
+        let data = {{ data|tojson }};
+        
+        // Render the table from JSON data
+        function renderTable() {
+            const tableBody = document.querySelector('#dataTable tbody');
+            tableBody.innerHTML = '';
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    {% for column in columns %}
+                    <td>${item['{{ column.key }}']}</td>
+                    {% endfor %}
+                    <td>
+                        <button onclick="editRecord(${item.id})">Edit</button>
+                        <button onclick="deleteRecord(${item.id})">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Filter the table
+        function filterTable() {
+            const filters = {};
+            {% for column in columns %}
+            filters['{{ column.key }}'] = document.getElementById('{{ column.key }}Filter').value.toLowerCase();
+            {% endfor %}
+
+            const rows = document.querySelectorAll('#dataTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+                let isVisible = true;
+
+                {% for column in columns %}
+                const cellText = cells[{{ loop.index0 }}].textContent.toLowerCase();
+                const filterValue = filters['{{ column.key }}'];
+                if (filterValue && !cellText.includes(filterValue)) {
+                    isVisible = false;
+                }
+                {% endfor %}
+
+                row.style.display = isVisible ? '' : 'none';
+            });
+        }
+
+        // Add a record
+        function addRecord() {
+            const newRecord = {};
+
+            {% for column in columns if column.key != 'id' %}
+            newRecord['{{ column.key }}'] = document.getElementById('{{ column.key }}').value;
+            {% endfor %}
+
+            newRecord.id = data.length ? Math.max(...data.map(item => item.id)) + 1 : 1;
+            data.push(newRecord);
+            renderTable();
+            clearForm();
+        }
+
+        // Edit a record
+        function editRecord(id) {
+            const record = data.find(item => item.id === id);
+            if (record) {
+                document.getElementById('recordId').value = record.id;
+                {% for column in columns if column.key != 'id' %}
+                document.getElementById('{{ column.key }}').value = record['{{ column.key }}'];
+                {% endfor %}
+            }
+        }
+
+        // Update a record
+        function updateRecord() {
+            const id = parseInt(document.getElementById('recordId').value, 10);
+            if (isNaN(id)) {
+                alert('No record selected for update.');
+                return;
+            }
+
+            const record = data.find(item => item.id === id);
+            if (record) {
+                {% for column in columns if column.key != 'id' %}
+                record['{{ column.key }}'] = document.getElementById('{{ column.key }}').value;
+                {% endfor %}
+                renderTable();
+                clearForm();
+            }
+        }
+
+        // Delete a record
+        function deleteRecord(id) {
+            const index = data.findIndex(item => item.id === id);
+            if (index !== -1) {
+                data.splice(index, 1);
+                renderTable();
+            }
+        }
+
+        // Clear the form
+        function clearForm() {
+            document.getElementById('recordId').value = '';
+            {% for column in columns if column.key != 'id' %}
+            document.getElementById('{{ column.key }}').value = '';
+            {% endfor %}
+        }
+
+        // Initial render
+        renderTable();
+    </script>
+</body>
+</html>
