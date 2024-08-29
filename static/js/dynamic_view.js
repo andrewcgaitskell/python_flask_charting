@@ -9,11 +9,9 @@ function renderTable() {
 
     data.forEach(item => {
         const row = document.createElement('tr');
-        row.innerHTML = `
-            {% for column in columns %}
-            <td>${item['{{ column.key }}']}</td>
-            {% endfor %}
-        `;
+        row.innerHTML = columns.map(column => `
+            <td>${item[column.key]}</td>
+        `).join('');
         tableBody.appendChild(row);
     });
 }
@@ -21,9 +19,9 @@ function renderTable() {
 // Filter the table
 function filterTable() {
     const filters = {};
-    {% for column in columns %}
-    filters['{{ column.key }}'] = document.getElementById('{{ column.key }}Filter').value.toLowerCase();
-    {% endfor %}
+    columns.forEach(column => {
+        filters[column.key] = document.getElementById(`${column.key}Filter`).value.toLowerCase();
+    });
 
     const rows = document.querySelectorAll('#dataTable tbody tr');
 
@@ -31,13 +29,13 @@ function filterTable() {
         const cells = row.getElementsByTagName('td');
         let isVisible = true;
 
-        {% for column in columns %}
-        const cellText = cells[{{ loop.index0 }}].textContent.toLowerCase();
-        const filterValue = filters['{{ column.key }}'];
-        if (filterValue && !cellText.includes(filterValue)) {
-            isVisible = false;
-        }
-        {% endfor %}
+        columns.forEach((column, index) => {
+            const cellText = cells[index].textContent.toLowerCase();
+            const filterValue = filters[column.key];
+            if (filterValue && !cellText.includes(filterValue)) {
+                isVisible = false;
+            }
+        });
 
         row.style.display = isVisible ? '' : 'none';
     });
@@ -45,12 +43,12 @@ function filterTable() {
 
 // Clear the filters
 function clearForm() {
-    {% for column in columns %}
-    const filterInput = document.getElementById('{{ column.key }}Filter');
-    if (filterInput) {
-        filterInput.value = '';
-    }
-    {% endfor %}
+    columns.forEach(column => {
+        const filterInput = document.getElementById(`${column.key}Filter`);
+        if (filterInput) {
+            filterInput.value = '';
+        }
+    });
     filterTable(); // Refresh the table after clearing filters
 }
 
