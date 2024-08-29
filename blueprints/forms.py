@@ -151,6 +151,8 @@ def dynamic_crud_table(subject_in):
     '''
     r = Client.read(subject=subject_in)
 
+    print(r)
+
     # Specify the keys you want to select
     keys_to_select = table_columns
     
