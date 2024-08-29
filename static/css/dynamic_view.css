@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f4f4f4;
+}
+.filter-row input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
+}
+.filter-row th {
+    background-color: #eaeaea;
+}
+.actions {
+    margin-top: 20px;
+}
+.actions input, .actions button {
+    margin-right: 10px;
+}
+    
