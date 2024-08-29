@@ -60,8 +60,8 @@
                 <td>{{ row[column.key] }}</td>
                 {% endfor %}
                 <td>
-                    <button onclick="editRecord({{ row['id'] }})">Edit</button>
-                    <button onclick="deleteRecord({{ row['id'] }})">Delete</button>
+                    <button onclick="">Edit</button>
+                    <button onclick="">Delete</button>
                 </td>
             </tr>
             {% endfor %}
@@ -74,9 +74,9 @@
         {% for column in columns if column.key != 'id' %}
         <input type="text" id="{{ column.key }}" placeholder="{{ column.label }}">
         {% endfor %}
-        <button onclick="addRecord()">Add Record</button>
-        <button onclick="updateRecord()">Update Record</button>
-        <button onclick="clearForm()">Clear Form</button>
+        <button onclick="">Add Record</button>
+        <button onclick="">Update Record</button>
+        <button onclick="">Clear Form</button>
     </div>
 
     <script>
@@ -95,8 +95,8 @@
                     <td>${item['{{ column.key }}']}</td>
                     {% endfor %}
                     <td>
-                        <button onclick="editRecord(${item.id})">Edit</button>
-                        <button onclick="deleteRecord(${item.id})">Delete</button>
+                        <button onclick=")">Edit</button>
+                        <button onclick="">Delete</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -126,58 +126,6 @@
 
                 row.style.display = isVisible ? '' : 'none';
             });
-        }
-
-        // Add a record
-        function addRecord() {
-            const newRecord = {};
-
-            {% for column in columns if column.key != 'id' %}
-            newRecord['{{ column.key }}'] = document.getElementById('{{ column.key }}').value;
-            {% endfor %}
-
-            newRecord.id = data.length ? Math.max(...data.map(item => item.id)) + 1 : 1;
-            data.push(newRecord);
-            renderTable();
-            clearForm();
-        }
-
-        // Edit a record
-        function editRecord(id) {
-            const record = data.find(item => item.id === id);
-            if (record) {
-                document.getElementById('recordId').value = record.id;
-                {% for column in columns if column.key != 'id' %}
-                document.getElementById('{{ column.key }}').value = record['{{ column.key }}'];
-                {% endfor %}
-            }
-        }
-
-        // Update a record
-        function updateRecord() {
-            const id = parseInt(document.getElementById('recordId').value, 10);
-            if (isNaN(id)) {
-                alert('No record selected for update.');
-                return;
-            }
-
-            const record = data.find(item => item.id === id);
-            if (record) {
-                {% for column in columns if column.key != 'id' %}
-                record['{{ column.key }}'] = document.getElementById('{{ column.key }}').value;
-                {% endfor %}
-                renderTable();
-                clearForm();
-            }
-        }
-
-        // Delete a record
-        function deleteRecord(id) {
-            const index = data.findIndex(item => item.id === id);
-            if (index !== -1) {
-                data.splice(index, 1);
-                renderTable();
-            }
         }
 
         // Clear the form
