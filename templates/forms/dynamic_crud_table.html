@@ -62,6 +62,7 @@
                 <td>
                     <button onclick="editRecord({{ row['id'] }})">Edit</button>
                     <button onclick="deleteRecord({{ row['id'] }})">Delete</button>
+                    <a href="/view/{{ row['id'] }}" class="view-button">View</a>
                 </td>
             </tr>
             {% endfor %}
@@ -80,27 +81,27 @@
     </div>
 
     <script>
-        // Basic script to handle filtering and editing.
         function filterTable() {
             const filters = {};
             {% for column in columns %}
-            const filterValue = document.getElementById('{{ column.key }}Filter').value.toLowerCase();
-            if (filterValue) {
-                filters['{{ column.key }}'] = filterValue;
-            }
+            const filterValue = document.getElementById('{{ column.key }}Filter').value.toLowerCase().trim();
+            filters['{{ column.key }}'] = filterValue;
             {% endfor %}
 
             const rows = document.querySelectorAll('#dataTable tbody tr');
+
             rows.forEach(row => {
                 let isVisible = true;
+
                 {% for column in columns %}
-                if (filters['{{ column.key }}']) {
-                    const cellValue = row.querySelector('td:nth-child({{ loop.index }})').textContent.toLowerCase();
-                    if (!cellValue.includes(filters['{{ column.key }}'])) {
-                        isVisible = false;
-                    }
+                const cellText = row.querySelector('td:nth-child({{ loop.index }})').textContent.toLowerCase();
+                const filterValue = filters['{{ column.key }}'];
+
+                if (filterValue && !cellText.includes(filterValue)) {
+                    isVisible = false;
                 }
                 {% endfor %}
+
                 row.style.display = isVisible ? '' : 'none';
             });
         }
@@ -110,6 +111,22 @@
             {% for column in columns if column.key != 'id' %}
             document.getElementById('{{ column.key }}').value = '';
             {% endfor %}
+        }
+
+        function editRecord(id) {
+            // Edit functionality implementation here
+        }
+
+        function deleteRecord(id) {
+            // Delete functionality implementation here
+        }
+
+        function addRecord() {
+            // Add functionality implementation here
+        }
+
+        function updateRecord() {
+            // Update functionality implementation here
         }
     </script>
 </body>
