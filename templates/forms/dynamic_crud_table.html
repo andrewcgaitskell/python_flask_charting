@@ -105,9 +105,11 @@
 
         // Filter the table
         function filterTable() {
+            console.log("filter table triggered")
             const filters = {};
             {% for column in columns %}
             filters['{{ column.key }}'] = document.getElementById('{{ column.key }}Filter').value.toLowerCase();
+            console.log(filters)
             {% endfor %}
 
             const rows = document.querySelectorAll('#dataTable tbody tr');
