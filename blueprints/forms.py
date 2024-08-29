@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 import os
 from os import environ, path
 
+import pandas as pd
+
 import json
 
 import datetime
