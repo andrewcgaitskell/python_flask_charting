@@ -110,7 +110,7 @@ def list():
 def crud_table():
     return render_template('forms/crud_table.html')
 
-@forms_bp.route('/<subject_in>/dynamic_crud_table')
+@forms_bp.route('/<subject_in>/dynamic_view')
 def dynamic_crud_table(subject_in):
     params = {
     'value': '1',
@@ -160,7 +160,7 @@ def dynamic_crud_table(subject_in):
     data = [{key: item[key] for key in keys_to_select} for item in r]
 
     # Pass the columns and data to the template
-    return render_template('forms/dynamic_crud_table.html', columns=columns, data=data)
+    return render_template('forms/dynamic_view.html', columns=columns, data=data)
 
 @forms_bp.route('/list_items/<subject>/')
 def list_items(subject):
