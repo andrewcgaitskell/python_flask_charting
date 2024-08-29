@@ -102,9 +102,27 @@ def list():
     subjects = ["data", "data_display", "ownership", "plot", "dropdown","graph", "limit_display"]
     return render_template('forms/list_subjects.html', subjects=subjects)
 
-@forms_bp.route('/crud_table')
+@forms_bp.route('/static_crud_table')
 def crud_table():
     return render_template('forms/crud_table.html')
+
+@forms_bp.route('/dynamic_crud_table')
+def dynamic_crud_table():
+    # Define the columns and data
+    columns = [
+        {'key': 'id', 'label': 'ID'},
+        {'key': 'name', 'label': 'Name'},
+        {'key': 'age', 'label': 'Age'},
+        {'key': 'email', 'label': 'Email'}
+    ]
+
+    data = [
+        {'id': 1, 'name': 'John Doe', 'age': 30, 'email': 'john@example.com'},
+        {'id': 2, 'name': 'Jane Smith', 'age': 25, 'email': 'jane@example.com'}
+    ]
+
+    # Pass the columns and data to the template
+    return render_template('forms/dynamic_crud_table.html', columns=columns, data=data)
 
 @forms_bp.route('/list_items/<subject>/')
 def list_items(subject):
