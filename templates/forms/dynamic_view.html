@@ -4,7 +4,6 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dynamic_view.css') }}">
-    <script src="{{ url_for('static', filename='js/dynamic_view.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -41,8 +40,12 @@
 
 {% block scripts %}
 <script>
-    // Function to update CSS variables with actual screen size
+window.tableData = {{ data|tojson }};
+window.tableColumns = {{ columns|tojson }};
 </script>
+
+<!-- Link to external JavaScript file -->
+<script src="{{ url_for('static', filename='js/dynamic_view.js') }}"></script>
 {% endblock %}
 
 
