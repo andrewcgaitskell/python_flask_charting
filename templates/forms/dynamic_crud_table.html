@@ -62,9 +62,9 @@
         </tbody>
     </table>
 
-    <!-- Optional form for clearing fields if needed -->
+    <!-- Optional form for clearing filters -->
     <div class="actions">
-        <button onclick="clearForm()">Clear Form</button>
+        <button onclick="clearForm()">Clear Filters</button>
     </div>
 
     <script>
@@ -89,8 +89,6 @@
 
         // Filter the table
         function filterTable() {
-            console.log("filterTable function triggered");
-
             const filters = {};
             {% for column in columns %}
             filters['{{ column.key }}'] = document.getElementById('{{ column.key }}Filter').value.toLowerCase();
@@ -114,10 +112,13 @@
             });
         }
 
-        // Clear the form
+        // Clear the filters
         function clearForm() {
-            {% for column in columns if column.key != 'id' %}
-            document.getElementById('{{ column.key }}Filter').value = '';
+            {% for column in columns %}
+            const filterInput = document.getElementById('{{ column.key }}Filter');
+            if (filterInput) {
+                filterInput.value = '';
+            }
             {% endfor %}
             filterTable(); // Refresh the table after clearing filters
         }
