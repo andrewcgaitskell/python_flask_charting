@@ -1,5 +1,6 @@
-// Initialize data from Flask
-let data = {{ data|tojson }};
+// Ensure the global variables are defined
+const data = window.tableData;
+const columns = window.tableColumns;
 
 // Render the table from JSON data
 function renderTable() {
