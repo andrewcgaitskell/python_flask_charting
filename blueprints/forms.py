@@ -106,20 +106,52 @@ def list():
 def crud_table():
     return render_template('forms/crud_table.html')
 
-@forms_bp.route('/dynamic_crud_table')
-def dynamic_crud_table():
+@forms_bp.route('/<subject_in>/dynamic_crud_table')
+def dynamic_crud_table(subject_in):
+    params = {
+    'value': '1',
+    'key_subject': subject_in,
+    'key_purpose': 'list_table'
+    }
+
+    params_as_string = json.dumps(params)
+
+    # Pass the encoded query to the API client
+    r = Client.query(subject='graph', query_criteria=params_as_string)
+
+    new_df = pd.DataFrame(data=r)
+    table_columns = new_df['key'].tolist()
+    columns = []
+    for tc in table_columns:
+        append_dict = {'key': tc, 'label': tc}
+        columns.append(append_dict)
+
+    print(columns)
+    
+    # generate_form_data_from_schema(subject_in, data_in)
+    
     # Define the columns and data
+    '''
     columns = [
         {'key': 'id', 'label': 'ID'},
         {'key': 'name', 'label': 'Name'},
         {'key': 'age', 'label': 'Age'},
         {'key': 'email', 'label': 'Email'}
     ]
-
+    '''
+    '''
     data = [
         {'id': 1, 'name': 'John Doe', 'age': 30, 'email': 'john@example.com'},
         {'id': 2, 'name': 'Jane Smith', 'age': 25, 'email': 'jane@example.com'}
     ]
+    '''
+    r = Client.read(subject=subject_in)
+
+    # Specify the keys you want to select
+    keys_to_select = table_columns
+    
+    # Iterate over the list of dictionaries and select only the specified keys
+    data = [{key: item[key] for key in keys_to_select} for item in r]
 
     # Pass the columns and data to the template
     return render_template('forms/dynamic_crud_table.html', columns=columns, data=data)
