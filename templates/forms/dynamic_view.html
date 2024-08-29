@@ -1,130 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Table with Filtering</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        .filter-row input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 4px;
-        }
-        .filter-row th {
-            background-color: #eaeaea;
-        }
-        .actions {
-            margin-top: 20px;
-        }
-        .actions input, .actions button {
-            margin-right: 10px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Dynamic Table with Filtering</h1>
-
-    <!-- Table -->
-    <table id="dataTable">
-        <thead>
-            <tr>
-                {% for column in columns %}
-                <th>{{ column.label }}</th>
-                {% endfor %}
-            </tr>
-            <tr class="filter-row">
-                {% for column in columns %}
-                <th><input type="text" id="{{ column.key }}Filter" oninput="filterTable()" placeholder="Filter {{ column.label }}"></th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in data %}
-            <tr>
-                {% for column in columns %}
-                <td>{{ row[column.key] }}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <!-- Optional form for clearing filters -->
-    <div class="actions">
-        <button onclick="clearForm()">Clear Filters</button>
-    </div>
-
-    <script>
-        // Initialize data from Flask
-        let data = {{ data|tojson }};
-        
-        // Render the table from JSON data
-        function renderTable() {
-            const tableBody = document.querySelector('#dataTable tbody');
-            tableBody.innerHTML = '';
-
-            data.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    {% for column in columns %}
-                    <td>${item['{{ column.key }}']}</td>
-                    {% endfor %}
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Filter the table
-        function filterTable() {
-            const filters = {};
+<h1>Dynamic Table with Filtering</h1>
+<!-- Table -->
+<table id="dataTable">
+    <thead>
+        <tr>
             {% for column in columns %}
-            filters['{{ column.key }}'] = document.getElementById('{{ column.key }}Filter').value.toLowerCase();
+            <th>{{ column.label }}</th>
             {% endfor %}
-
-            const rows = document.querySelectorAll('#dataTable tbody tr');
-
-            rows.forEach(row => {
-                const cells = row.getElementsByTagName('td');
-                let isVisible = true;
-
-                {% for column in columns %}
-                const cellText = cells[{{ loop.index0 }}].textContent.toLowerCase();
-                const filterValue = filters['{{ column.key }}'];
-                if (filterValue && !cellText.includes(filterValue)) {
-                    isVisible = false;
-                }
-                {% endfor %}
-
-                row.style.display = isVisible ? '' : 'none';
-            });
-        }
-
-        // Clear the filters
-        function clearForm() {
+        </tr>
+        <tr class="filter-row">
             {% for column in columns %}
-            const filterInput = document.getElementById('{{ column.key }}Filter');
-            if (filterInput) {
-                filterInput.value = '';
-            }
+            <th><input type="text" id="{{ column.key }}Filter" oninput="filterTable()" placeholder="Filter {{ column.label }}"></th>
             {% endfor %}
-            filterTable(); // Refresh the table after clearing filters
-        }
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr>
+            {% for column in columns %}
+            <td>{{ row[column.key] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- Optional form for clearing filters -->
+<div class="actions">
+    <button onclick="clearForm()">Clear Filters</button>
+</div>
 
-        // Initial render
-        renderTable();
-    </script>
-</body>
-</html>
+  
