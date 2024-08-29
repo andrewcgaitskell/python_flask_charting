@@ -80,143 +80,37 @@
     </div>
 
     <script>
-        // Data and column definitions from Flask
-        const columns = {{ columns|tojson }};
-        let data = {{ data|tojson }};
-        
-        // Add a record
-        function addRecord() {
-            const newRecord = {};
-
-            columns.forEach(col => {
-                if (col.key !== 'id' && col.key !== 'actions') {
-                    const value = document.getElementById(col.key).value;
-                    newRecord[col.key] = col.key === 'age' ? parseInt(value, 10) : value;
-                }
-            });
-
-            if (Object.values(newRecord).some(v => v === '' || v === null || (isNaN(v) && newRecord.age))) {
-                alert('Please fill all fields correctly.');
-                return;
-            }
-
-            newRecord.id = data.length ? Math.max(...data.map(item => item.id)) + 1 : 1;
-            data.push(newRecord);
-            renderTable();
-            clearForm();
-        }
-
-        // Edit a record
-        function editRecord(id) {
-            const record = data.find(item => item.id === id);
-            if (record) {
-                document.getElementById('recordId').value = record.id;
-                columns.forEach(col => {
-                    if (col.key !== 'id' && col.key !== 'actions') {
-                        document.getElementById(col.key).value = record[col.key];
-                    }
-                });
-            }
-        }
-
-        // Update a record
-        function updateRecord() {
-            const id = parseInt(document.getElementById('recordId').value, 10);
-            if (isNaN(id)) {
-                alert('No record selected for update.');
-                return;
-            }
-
-            const record = data.find(item => item.id === id);
-            if (record) {
-                columns.forEach(col => {
-                    if (col.key !== 'id' && col.key !== 'actions') {
-                        const value = document.getElementById(col.key).value;
-                        record[col.key] = col.key === 'age' ? parseInt(value, 10) : value;
-                    }
-                });
-                renderTable();
-                clearForm();
-            }
-        }
-
-        // Delete a record
-        function deleteRecord(id) {
-            const index = data.findIndex(item => item.id === id);
-            if (index !== -1) {
-                data.splice(index, 1);
-                renderTable();
-            }
-        }
-
-        // Clear the form
-        function clearForm() {
-            document.getElementById('recordId').value = '';
-            columns.forEach(col => {
-                if (col.key !== 'id' && col.key !== 'actions') {
-                    document.getElementById(col.key).value = '';
-                }
-            });
-        }
-
-        // Filter the table
+        // Basic script to handle filtering and editing.
         function filterTable() {
             const filters = {};
-            columns.forEach(col => {
-                const filterInput = document.getElementById(`${col.key}Filter`);
-                if (filterInput) {
-                    const filterValue = filterInput.value.toLowerCase();
-                    if (filterValue) {
-                        filters[col.key] = filterValue;
-                    }
-                }
-            });
+            {% for column in columns %}
+            const filterValue = document.getElementById('{{ column.key }}Filter').value.toLowerCase();
+            if (filterValue) {
+                filters['{{ column.key }}'] = filterValue;
+            }
+            {% endfor %}
 
             const rows = document.querySelectorAll('#dataTable tbody tr');
             rows.forEach(row => {
-                const cells = row.getElementsByTagName('td');
                 let isVisible = true;
-                
-                columns.forEach((col, index) => {
-                    if (filters[col.key]) {
-                        const cellValue = cells[index].textContent.toLowerCase();
-                        if (!cellValue.includes(filters[col.key])) {
-                            isVisible = false;
-                        }
+                {% for column in columns %}
+                if (filters['{{ column.key }}']) {
+                    const cellValue = row.querySelector('td:nth-child({{ loop.index }})').textContent.toLowerCase();
+                    if (!cellValue.includes(filters['{{ column.key }}'])) {
+                        isVisible = false;
                     }
-                });
-
+                }
+                {% endfor %}
                 row.style.display = isVisible ? '' : 'none';
             });
         }
 
-        // Initial render
-        function renderTable() {
-            const tableBody = document.querySelector('#dataTable tbody');
-            tableBody.innerHTML = '';
-
-            data.forEach(item => {
-                const row = document.createElement('tr');
-
-                columns.forEach(col => {
-                    const cell = document.createElement('td');
-                    cell.textContent = item[col.key];
-                    row.appendChild(cell);
-                });
-
-                // Add actions buttons
-                const actionsCell = document.createElement('td');
-                actionsCell.innerHTML = `
-                    <button onclick="editRecord(${item.id})">Edit</button>
-                    <button onclick="deleteRecord(${item.id})">Delete</button>
-                `;
-                row.appendChild(actionsCell);
-
-                tableBody.appendChild(row);
-            });
+        function clearForm() {
+            document.getElementById('recordId').value = '';
+            {% for column in columns if column.key != 'id' %}
+            document.getElementById('{{ column.key }}').value = '';
+            {% endfor %}
         }
-
-        renderTable();
     </script>
 </body>
 </html>
