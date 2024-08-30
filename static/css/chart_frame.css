@@ -11,6 +11,7 @@
             border-width: 0px;
             border-color: blue;
             gap: 40px; 
+            overflow: hidden; /* Hide overflow to maintain fixed size */
         }
 
 .oblong-container {
