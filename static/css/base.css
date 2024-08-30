@@ -27,5 +27,21 @@ p {
     border-style: solid;
     border-width: 0px;
     border-color: black;
+    overflow: hidden; /* Hide overflow to maintain fixed size */
+}  
+
+.content-container
+{
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    overflow: auto; /* Enable scrolling if content overflows */
+    padding: 10px; /* Optional padding inside the scrollable content */
+    box-sizing: border-box; /* Ensure padding is included in the total width/height */
+    margin: 0 auto; /* Centers the container horizontally */
+    padding: 0px; /* Adds padding inside the container */
+    background-color: green; /* Example background color */
+    border-style: solid;
+    border-width: 0px;
+    border-color: black;
 }  
 
