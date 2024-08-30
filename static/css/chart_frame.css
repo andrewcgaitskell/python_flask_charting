@@ -15,7 +15,7 @@
 
 .oblong-container {
     width: calc(var(--screen-width) * 0.8 );
-    height: calc(var(--screen-height) / 5);
+    height: calc(var(--screen-height) / 4);
     background-color: #ddd;
     display: flex;
     align-items: center;
