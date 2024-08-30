@@ -108,13 +108,13 @@ def receive_css_variable():
     main_color = data.get('mainColor')
     screen_height = data.get('screenHeight')
     screen_width = data.get('screenWidth')
-    local_data['screenHeight] = screen_height
-    local_data['screenWidth] = screen_width
+    local_data['screenHeight'] = screen_height
+    local_data['screenWidth'] = screen_width
 }
     # Process the CSS variable value if needed
     print(f"Received CSS variable - Main Color: {main_color}")
-    print(f"Received CSS variable - Screen Height : {local_data['screenHeight]}")
-    print(f"Received CSS variable - Screen Width: {local_data['screenWidth]}")
+    print(f"Received CSS variable - Screen Height : {local_data['screenHeight']}")
+    print(f"Received CSS variable - Screen Width: {local_data['screenWidth']}")
 
     # Respond with a JSON object
     return jsonify({'status': 'success', 'mainColor': main_color,'screenHeight' : screen_height,'screenWidth' : screen_width  })
