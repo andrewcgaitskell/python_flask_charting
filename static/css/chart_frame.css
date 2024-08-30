@@ -66,7 +66,7 @@
 }
 
 .oblong-vertical-text-container {
-    width : calc((var(--screen-height) / 5) - 20px);
+    width : calc((var(--screen-height) / 4) - 25px);
     height : 20px;
     position: absolute;
     display: flex;
