@@ -101,7 +101,7 @@ def chart_frame(plot_id_in):
     # Encode to base64
     dmtools_plot_url = base64.b64encode(img.getvalue()).decode('utf8')
 
-    dmtools_legend = Client.get_mpl_legend(plot_id_in)
+    dmtools_legend = Client.get_mpl_legend(plot_id_in, width_in=600, height_in=100)
     # Save it to a BytesIO object
     img = io.BytesIO()
     dmtools_legend.savefig(img, format='png')
