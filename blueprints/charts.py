@@ -95,14 +95,12 @@ def matplotlib():
 def get_dimensions():
     # Get JSON data from the request
     data = request.get_json()
+    print(data)
     screen_width = data.get('width')
     screen_height = data.get('height')
     
-    # Process the dimensions (for demonstration, we'll just return them)
-    print(f"Received screen dimensions: width={screen_width}, height={screen_height}")
-
     # Return a JSON response
-    return jsonify({'status': 'success', 'message': 'Dimensions received', 'width': screen_width, 'height': screen_height})
+    return {'hello':'hello'}
 
 
 @charts_bp.route('/chart_frame/<plot_id_in>')
