@@ -98,6 +98,7 @@ def chart_frame(plot_id_in):
     img = io.BytesIO()
     dmtools_plot.savefig(img, format='png')
     img.seek(0)
+    dmtools_plot.clf()  # Clear the current figure
     # Encode to base64
     dmtools_plot_url = base64.b64encode(img.getvalue()).decode('utf8')
 
@@ -105,6 +106,7 @@ def chart_frame(plot_id_in):
     img = io.BytesIO()
     dmtools_legend.savefig(img, format='png')
     img.seek(0)
+    dmtools_legend.clf()  # Clear the current figure
     # Encode to base64
     dmtools_legend_url = base64.b64encode(img.getvalue()).decode('utf8')
     
