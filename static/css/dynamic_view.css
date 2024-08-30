@@ -15,7 +15,17 @@ table {
     border-collapse: collapse;
     margin-top: 20px;
 }
-th, td {
+
+th {
+    background-color: #f4f4f4;
+    padding: 8px;
+    position: sticky;
+    top: 0; /* Fix header to the top */
+    z-index: 2; /* Ensure header is above table content */
+}
+
+
+td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
@@ -23,14 +33,28 @@ th, td {
 th {
     background-color: #f4f4f4;
 }
-.filter-row input {
-    width: calc(var(--screen-width) - 0px)
-    box-sizing: border-box;
-    padding: 4px;
-}
+
+/* Style the filter row separately */
 .filter-row th {
     background-color: #eaeaea;
+    position: sticky;
+    top: 0; /* Fix the filter row at the top */
+    z-index: 1; /* Ensure filter row is below table headers */
 }
+
+/* Fix the ID column */
+.fixed-column {
+    position: sticky;
+    left: 0; /* Fix the column to the left */
+    background-color: white; /* Ensure column background is visible */
+    z-index: 1; /* Ensure the fixed column is above the scrolling content */
+}
+
+/* Add padding to the left of fixed column cells to match the scrollable columns */
+.fixed-column {
+    padding-left: 16px; /* Adjust as needed */
+}
+
 .actions {
     margin-top: 20px;
 }
