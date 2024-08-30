@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Send the dimensions to the Flask server using Fetch API
     fetch('/get_dimensions', {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
