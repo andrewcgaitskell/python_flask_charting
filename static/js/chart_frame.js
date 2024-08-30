@@ -14,4 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         body: JSON.stringify({ width: screenWidth, height: screenHeight })
     })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();  // Assume the server responds with JSON
+    })
+    .then(data => {
+        console.log('Server response:', data);
+    })
+    .catch(error => {
+        console.error('Error sending dimensions:', error);
+    });
 });
