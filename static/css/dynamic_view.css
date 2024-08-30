@@ -16,13 +16,15 @@ table {
     margin-top: 20px;
 }
 
-th {
+/* Fix header row */
+thead th {
     background-color: #f4f4f4;
     padding: 8px;
     position: sticky;
-    top: 0; /* Fix header to the top */
-    z-index: 2; /* Ensure header is above table content */
+    top: 0; /* Fix header to top */
+    z-index: 2; /* Ensure header is above the table content */
 }
+
 
 
 td {
@@ -34,12 +36,13 @@ th {
     background-color: #f4f4f4;
 }
 
-/* Style the filter row separately */
-.filter-row th {
+/* Style for filter row */
+.filter-row {
     background-color: #eaeaea;
     position: sticky;
-    top: 0; /* Fix the filter row at the top */
-    z-index: 1; /* Ensure filter row is below table headers */
+    top: 0; /* Fix filter row below the header */
+    z-index: 1; /* Ensure filter row is below header but above table content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow to separate from table content */
 }
 
 /* Fix the ID column */
@@ -48,6 +51,14 @@ th {
     left: 0; /* Fix the column to the left */
     background-color: white; /* Ensure column background is visible */
     z-index: 1; /* Ensure the fixed column is above the scrolling content */
+}
+
+/* Ensure filter inputs are visible */
+.filter-row input {
+    width: 100%; /* Ensure inputs fill the cell */
+    box-sizing: border-box;
+    padding: 4px;
+    border: 1px solid #ddd; /* Optional: Add border to inputs */
 }
 
 /* Add padding to the left of fixed column cells to match the scrollable columns */
