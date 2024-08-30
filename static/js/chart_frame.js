@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const screenHeight = window.innerHeight;
 
     // Send the dimensions to the Flask server using Fetch API
-    fetch('/get_image', {
+    fetch('/get_dimensions', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
