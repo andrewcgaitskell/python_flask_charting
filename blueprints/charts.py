@@ -96,7 +96,7 @@ def matplotlib():
 def index():
     return render_template('charts/css_variable.html')
 
-@app.route('/receive_css_variable', methods=['POST'])
+@charts_bp.route('/receive_css_variable', methods=['POST'])
 def receive_css_variable():
     data = request.get_json()
     main_color = data.get('mainColor')
