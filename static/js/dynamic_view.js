@@ -1,56 +1,70 @@
-// Ensure the global variables are defined
-const data = window.tableData;
-const columns = window.tableColumns;
+document.addEventListener('DOMContentLoaded', function () {
+    // Ensure the global variables are defined
+    const data = window.tableData;
+    const columns = window.tableColumns;
 
-// Render the table from JSON data
-function renderTable() {
-    const tableBody = document.querySelector('#dataTable tbody');
-    tableBody.innerHTML = '';
+    if (!data || !columns) {
+        console.error('Data or Columns are not defined.');
+        return;
+    }
 
-    data.forEach(item => {
-        const row = document.createElement('tr');
-        row.innerHTML = columns.map(column => `
-            <td>${item[column.key]}</td>
-        `).join('');
-        tableBody.appendChild(row);
-    });
-}
+    // Render the table from JSON data
+    function renderTable() {
+        const tableBody = document.querySelector('#dataTable tbody');
+        
+        // Check if tableBody is null
+        if (!tableBody) {
+            console.error('Table body element not found.');
+            return; // Stop execution if tableBody is not found
+        }
 
-// Filter the table
-function filterTable() {
-    const filters = {};
-    columns.forEach(column => {
-        filters[column.key] = document.getElementById(`${column.key}Filter`).value.toLowerCase();
-    });
+        tableBody.innerHTML = '';
 
-    const rows = document.querySelectorAll('#dataTable tbody tr');
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = columns.map(column => `
+                <td>${item[column.key]}</td>
+            `).join('');
+            tableBody.appendChild(row);
+        });
+    }
 
-    rows.forEach(row => {
-        const cells = row.getElementsByTagName('td');
-        let isVisible = true;
-
-        columns.forEach((column, index) => {
-            const cellText = cells[index].textContent.toLowerCase();
-            const filterValue = filters[column.key];
-            if (filterValue && !cellText.includes(filterValue)) {
-                isVisible = false;
-            }
+    // Filter the table
+    function filterTable() {
+        const filters = {};
+        columns.forEach(column => {
+            filters[column.key] = document.getElementById(`${column.key}Filter`).value.toLowerCase();
         });
 
-        row.style.display = isVisible ? '' : 'none';
-    });
-}
+        const rows = document.querySelectorAll('#dataTable tbody tr');
 
-// Clear the filters
-function clearForm() {
-    columns.forEach(column => {
-        const filterInput = document.getElementById(`${column.key}Filter`);
-        if (filterInput) {
-            filterInput.value = '';
-        }
-    });
-    filterTable(); // Refresh the table after clearing filters
-}
+        rows.forEach(row => {
+            const cells = row.getElementsByTagName('td');
+            let isVisible = true;
 
-// Initial render
-renderTable();
+            columns.forEach((column, index) => {
+                const cellText = cells[index].textContent.toLowerCase();
+                const filterValue = filters[column.key];
+                if (filterValue && !cellText.includes(filterValue)) {
+                    isVisible = false;
+                }
+            });
+
+            row.style.display = isVisible ? '' : 'none';
+        });
+    }
+
+    // Clear the filters
+    function clearForm() {
+        columns.forEach(column => {
+            const filterInput = document.getElementById(`${column.key}Filter`);
+            if (filterInput) {
+                filterInput.value = '';
+            }
+        });
+        filterTable(); // Refresh the table after clearing filters
+    }
+
+    // Initial render
+    renderTable();
+});
