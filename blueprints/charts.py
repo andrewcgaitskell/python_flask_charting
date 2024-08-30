@@ -100,11 +100,15 @@ def index():
 def receive_css_variable():
     data = request.get_json()
     main_color = data.get('mainColor')
+    screen_height = data.get('screenHeight')
+    screen_width = data.get('screenWidth')
     # Process the CSS variable value if needed
     print(f"Received CSS variable - Main Color: {main_color}")
+    print(f"Received CSS variable - Screen Height : {screen_height}")
+    print(f"Received CSS variable - Screen Width: {screen_width}")
 
     # Respond with a JSON object
-    return jsonify({'status': 'success', 'mainColor': main_color})
+    return jsonify({'status': 'success', 'mainColor': main_color,'screenHeight' : screen_height,'screenWidth' : screen_width  })
 
 
 @charts_bp.route('/chart_frame/<plot_id_in>')
