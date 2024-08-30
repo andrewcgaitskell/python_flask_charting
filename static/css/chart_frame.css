@@ -166,16 +166,16 @@
 }
 
 .square-description-container {
-    width : calc((var(--screen-height) / 2) - 20px);
-    height : calc((var(--screen-height) / 2) - 20px);
+    width : calc((var(--screen-height) / 2) - 40px);
+    height : calc((var(--screen-height) / 2) - 40px);
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    top: 20px;
-    left: 20px;
-    background-color: #8A2BE2;
+    top: 22px;
+    left: 22px;
+    background-color: green;
     color: black;
     padding: 0px 0px;
     border-radius: 0px;
