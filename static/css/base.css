@@ -1,7 +1,9 @@
 :root {
     --screen-width: 100vw; /* Default fallback */
     --screen-height: 100vh; /* Default fallback */
+    --main-color: #3498db;
 }
+
 body {
     margin: 0;
     padding: 0;
