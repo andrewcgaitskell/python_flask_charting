@@ -92,7 +92,7 @@ def matplotlib():
     return render_template('charts/matplotlib.html')
 
 
-@app.route('/css_variable/')
+@charts_bp.route('/css_variable/')
 def index():
     return render_template('charts/css_variable.html')
 
