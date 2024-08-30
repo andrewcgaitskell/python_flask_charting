@@ -7,34 +7,36 @@
 {% endblock %}
 
 {% block content %}
-<h1>Dynamic Table with Filtering</h1>
-<!-- Table -->
-<table id="dataTable">
-    <thead>
-        <tr>
-            {% for column in columns %}
-            <th>{{ column.label }}</th>
+<div class='dynamic-form-container>
+    <h1>Dynamic Table with Filtering</h1>
+    <!-- Table -->
+    <table id="dataTable">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column.label }}</th>
+                {% endfor %}
+            </tr>
+            <tr class="filter-row">
+                {% for column in columns %}
+                <th><input type="text" id="{{ column.key }}Filter" oninput="filterTable()" placeholder="Filter {{ column.label }}"></th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                {% for column in columns %}
+                <td>{{ row[column.key] }}</td>
+                {% endfor %}
+            </tr>
             {% endfor %}
-        </tr>
-        <tr class="filter-row">
-            {% for column in columns %}
-            <th><input type="text" id="{{ column.key }}Filter" oninput="filterTable()" placeholder="Filter {{ column.label }}"></th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in data %}
-        <tr>
-            {% for column in columns %}
-            <td>{{ row[column.key] }}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<!-- Optional form for clearing filters -->
-<div class="actions">
-    <button onclick="clearForm()">Clear Filters</button>
+        </tbody>
+    </table>
+    <!-- Optional form for clearing filters -->
+    <div class="actions">
+        <button onclick="clearForm()">Clear Filters</button>
+    </div>
 </div>
 {% endblock %}
 
