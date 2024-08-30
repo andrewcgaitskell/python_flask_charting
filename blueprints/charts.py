@@ -21,6 +21,7 @@ import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 import numpy as np
 
+import base64
 
 ## get api key and user id from local .env file
 from dotenv import load_dotenv
