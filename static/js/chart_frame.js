@@ -10,20 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('/get_dimensions', {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'text/plain'
         },
-        body: JSON.stringify({ width: screenWidth, height: screenHeight })
+        body: { width: screenWidth, height: screenHeight }
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         return response.json();  // Assume the server responds with JSON
-    })
-    .then(data => {
-        console.log('Server response:', data);
-    })
-    .catch(error => {
-        console.error('Error sending dimensions:', error);
     });
 });
