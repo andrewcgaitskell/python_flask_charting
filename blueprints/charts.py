@@ -2,6 +2,8 @@ from flask import Blueprint
 
 from flask import Flask, render_template, jsonify, send_file, send_from_directory
 
+from flask import request
+
 from brown_edu_dmtools.dmtools_client_package.dmtools_client_module import DMToolsClient
 from brown_edu_dmtools.dmtools_client_package.dmtools_client_module import DMToolTestData
 from brown_edu_dmtools.dmtools_client_package.dmtools_client_module import PlotTrace
@@ -89,8 +91,23 @@ def matplotlib():
     #return template.render()
     return render_template('charts/matplotlib.html')
 
+@charts_bp.route('/get_dimensions', methods=['POST'])
+def get_dimensions():
+    # Get JSON data from the request
+    data = request.get_json()
+    screen_width = data.get('width')
+    screen_height = data.get('height')
+    
+    # Process the dimensions (for demonstration, we'll just return them)
+    print(f"Received screen dimensions: width={screen_width}, height={screen_height}")
+
+    # Return a JSON response
+    return jsonify({'status': 'success', 'message': 'Dimensions received', 'width': screen_width, 'height': screen_height})
+
+
 @charts_bp.route('/chart_frame/<plot_id_in>')
 def chart_frame(plot_id_in):
+    
     dmtools_plot = Client.get_mpl_plot(plot_id_in, width_in=400, height_in=400)
     
     # Save it to a BytesIO object
