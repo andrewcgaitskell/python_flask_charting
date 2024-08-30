@@ -19,7 +19,9 @@ table {
 /* Fix header row */
 thead th {
     background-color: #f4f4f4;
-    padding: 8px;
+    padding: 0px;
+    height : 25px;
+    line-height: 25px;
     position: sticky;
     top: 0; /* Fix header to top */
     z-index: 2; /* Ensure header is above the table content */
@@ -40,7 +42,9 @@ th {
 .filter-row {
     background-color: #eaeaea;
     position: sticky;
-    top: 0; /* Fix filter row below the header */
+    height : 25px;
+    line-height: 25px;
+    top: 25px; /* Fix filter row below the header */
     z-index: 1; /* Ensure filter row is below header but above table content */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow to separate from table content */
 }
@@ -57,19 +61,21 @@ th {
 .filter-row input {
     width: 100%; /* Ensure inputs fill the cell */
     box-sizing: border-box;
-    padding: 4px;
+    height : 25px;
+    line-height: 25px;
+    padding: 0px;
     border: 1px solid #ddd; /* Optional: Add border to inputs */
 }
 
 /* Add padding to the left of fixed column cells to match the scrollable columns */
 .fixed-column {
-    padding-left: 16px; /* Adjust as needed */
+    padding-left: 0px; /* Adjust as needed */
 }
 
 .actions {
-    margin-top: 20px;
+    margin-top: 0px;
 }
 .actions input, .actions button {
-    margin-right: 10px;
+    margin-right: 0px;
 }
     
