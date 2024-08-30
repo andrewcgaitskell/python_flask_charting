@@ -91,7 +91,7 @@ def matplotlib():
 
 @charts_bp.route('/chart_frame/<plot_id_in>')
 def chart_frame(plot_id_in):
-    dmtools_plot = Client.get_mpl_plot(plot_id_in)
+    dmtools_plot = Client.get_mpl_plot(plot_id_in, width_in=400, height_in=400)
     
     # Save it to a BytesIO object
     img = io.BytesIO()
