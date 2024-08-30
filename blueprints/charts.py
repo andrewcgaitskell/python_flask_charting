@@ -91,16 +91,15 @@ def matplotlib():
     #return template.render()
     return render_template('charts/matplotlib.html')
 
-@charts_bp.route('/get_dimensions', methods=['POST','GET'])
-def get_dimensions():
-    # Get JSON data from the request
+@charts_bp.route('/receive_css_variable', methods=['POST'])
+def receive_css_variable():
     data = request.get_json()
-    print(data)
-    screen_width = data.get('width')
-    screen_height = data.get('height')
-    
-    # Return a JSON response
-    return {'hello':'hello'}
+    main_color = data.get('mainColor')
+    # Process the CSS variable value if needed
+    print(f"Received CSS variable - Main Color: {main_color}")
+
+    # Respond with a JSON object
+    return jsonify({'status': 'success', 'mainColor': main_color})
 
 
 @charts_bp.route('/chart_frame/<plot_id_in>')
