@@ -1,6 +1,5 @@
 .dynamic-form-container {
             padding: 0px 0px;
-            display: flex;
             justify-content: center; /* Align horizontal */
             align-items: center; /* Align vertical */
             width : calc(var(--screen-width) - 0px);
