@@ -1,23 +1,23 @@
-// chart_frame.js
+// script.js
 
-// Send screen dimensions to Flask endpoint when the page loads
 document.addEventListener('DOMContentLoaded', function () {
-    // Get the screen width and height
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
+    // Get the value of the CSS variable
+    const root = document.documentElement;
+    const mainColor = getComputedStyle(root).getPropertyValue('----screen-width').trim();
 
-    // Send the dimensions to the Flask server using Fetch API
-    fetch('/get_dimensions', {
-        method: 'GET',
+    // Optional: Send the value to the Flask server
+    fetch('/receive_css_variable', {
+        method: 'POST',
         headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'application/json'
         },
-        body: { width: screenWidth, height: screenHeight }
+        body: JSON.stringify({ mainColor: mainColor })  // Send the CSS variable value as JSON
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();  // Assume the server responds with JSON
+    .then(response => response.json())
+    .then(data => {
+        console.log('Server response:', data);
+    })
+    .catch(error => {
+        console.error('Error sending CSS variable:', error);
     });
 });
