@@ -91,7 +91,7 @@ def matplotlib():
     #return template.render()
     return render_template('charts/matplotlib.html')
 
-@charts_bp.route('/get_dimensions', methods=['POST'])
+@charts_bp.route('/get_dimensions', methods=['POST','GET'])
 def get_dimensions():
     # Get JSON data from the request
     data = request.get_json()
