@@ -22,6 +22,19 @@ import matplotlib.lines as mlines
 import numpy as np
 
 
+## get api key and user id from local .env file
+from dotenv import load_dotenv
+import os
+from os import environ, path
+#BASE_DIR = path.abspath(path.dirname(__file__))
+BASE_DIR = os.getcwd()
+#load_dotenv(path.join(BASE_DIR, ".env"))
+load_dotenv(path.join(BASE_DIR, ".env"), override=True)
+MY_DMTOOLS_APIKEY = environ.get("MY_DMTOOLS_APIKEY")
+MY_DMTOOLS_USERID = environ.get("MY_DMTOOLS_USERID")
+Client = DMToolsClient(MY_DMTOOLS_USERID, MY_DMTOOLS_APIKEY)
+#Client.request_header
+
 charts_bp = Blueprint('charts_bp', __name__)
 
 @charts_bp.route('/charts')
@@ -75,9 +88,26 @@ def matplotlib():
     #return template.render()
     return render_template('charts/matplotlib.html')
 
-@charts_bp.route('/chart_frame')
-def chart_frame():
-    return render_template('charts/chart_frame.html')
+@charts_bp.route('/chart_frame/<plot_id_in>')
+def chart_frame(plot_id_in):
+    dmtools_plot = Client.get_mpl_plot(plot_id_in)
+    dmtools_legend = Client.get_mpl_legend(plot_id)
+    
+    # Save it to a BytesIO object
+    img = io.BytesIO()
+    dmtools_plot.savefig(img, format='png')
+    img.seek(0)
+    # Encode to base64
+    dmtools_plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+
+    # Save it to a BytesIO object
+    img = io.BytesIO()
+    dmtools_legend.savefig(img, format='png')
+    img.seek(0)
+    # Encode to base64
+    dmtools_legend_url = base64.b64encode(img.getvalue()).decode('utf8')
+    
+    return render_template('charts/chart_frame.html',plot=dmtools_plot_url, legend=dmtools_legend_url)
 
 @charts_bp.route('/matplotlib_png.png')
 def matplotlib_png():
