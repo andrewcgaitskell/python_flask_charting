@@ -49,14 +49,14 @@
   cursor: pointer;
   background-color: SaddleBrown;
   color: black;
-  padding: 5px 10px; /* Adjust padding */
+  padding: 5px 5px; /* Adjust padding */
   border: none;
   text-decoration: none; /* Remove underline for anchor button */
   display: flex; /* Treat as flex items */
   align-items: center; /* Vertically center content inside buttons */
   justify-content: center; /* Center text inside buttons */
-  height: 30px; /* Set a consistent height for vertical centering */
-  line-height: 30px; /* Align text vertically */
+  height: 25px; /* Set a consistent height for vertical centering */
+  line-height: 25px; /* Align text vertically */
 }
 
 .btn:hover {
