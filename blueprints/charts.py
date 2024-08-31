@@ -66,16 +66,7 @@ def charts():
     #return template.render(chart_data=chart_data)
     return render_template('charts/chart.html', chart_data=chart_data)
 
-@charts_bp.route('/tables')
-def tables():
-    table_data = [
-        {'column1': 'A1', 'column2': 'B1', 'column3': 'C1'},
-        {'column1': 'A2', 'column2': 'B2', 'column3': 'C2'},
-        {'column1': 'A3', 'column2': 'B3', 'column3': 'C3'}
-    ]
-    #template = env.get_template('tables/table.html')
-    #return template.render(table_data=table_data)
-    return render_template('tables/table.html', table_data=table_data)
+
 
 
 @charts_bp.route('/plotly')
@@ -236,18 +227,5 @@ def matplotlib_legend_png():
     
     return send_file(output,  mimetype='image/png')
 
-@charts_bp.route('/dynamic_form')
-def dynamic_form():
-    fields = [
-        {'id': 'name', 'label': 'Name', 'type': 'text', 'name': 'name'},
-        {'id': 'email', 'label': 'Email', 'type': 'email', 'name': 'email'},
-        {'id': 'age', 'label': 'Age', 'type': 'number', 'name': 'age'}
-    ]
-    #template = env.get_template('forms/dynamic_form.html')
-    #return template.render(fields=fields)
-    return render_template('forms/dynamic_form.html', fields=fields)
 
-@charts_bp.route('/offcanvas')
-def offcanvas():
-    return render_template('base/offcanvas.html')
 
