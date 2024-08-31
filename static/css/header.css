@@ -38,9 +38,9 @@
 
 .button-container {
   margin-left: auto; /* Push to the right side */
-  padding-right: 10px; /* Optional padding */
+  padding-right: 0px; /* Optional padding */
   display: flex; /* Use Flexbox for buttons */
-  gap: 10px; /* Spacing between buttons */
+  gap: 0px; /* Spacing between buttons */
   align-items: center; /* Center buttons vertically */
 }
 
@@ -49,14 +49,14 @@
   cursor: pointer;
   background-color: SaddleBrown;
   color: black;
-  padding: 5px 5px; /* Adjust padding */
+  padding: 0px 0px; /* Adjust padding */
   border: solid black 1px;
   text-decoration: none; /* Remove underline for anchor button */
   display: inline-block; /* Use inline-block for better control over spacing */
-  line-height: 25px; /* Align text vertically */
+  line-height: 20px; /* Align text vertically */
   border-radius: 5px; /* Rounded corners for buttons */
   text-align: center; /* Center text */
-  height: 25px; /* Ensure consistent height */
+  height: 20px; /* Ensure consistent height */
   vertical-align: middle; /* Ensure buttons align in middle */
   margin: 0; /* Remove any default margins */
 }
