@@ -37,19 +37,20 @@
 }
 
 .button-container {
+  height : 25px;
   margin-left: auto; /* Push to the right side */
-  padding-right: 10px; /* Optional padding */
+  padding-right: 0px; /* Optional padding */
   display: flex; /* Use Flexbox for buttons */
-  gap: 10px; /* Spacing between buttons */
+  gap: 5px; /* Spacing between buttons */
 }
 
 .btn {
   font-size: 15px;
   cursor: pointer;
-  background-color: SaddleBrown;
+  background-color: Sienna;
   color: black;
-  padding: 5px 10px; /* Adjust padding */
-  border: none;
+  padding: 0px 0px; /* Adjust padding */
+  border: 1px solid black;
   text-decoration: none; /* Remove underline for anchor button */
   display: inline-block; /* Display as inline-block */
 }
