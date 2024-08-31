@@ -22,7 +22,11 @@
 
 
 .title-header {
-  text-align: center; /* Center text */
+  position: absolute; /* Position it absolutely within the header */
+  left: 50%; /* Move to the center */
+  transform: translateX(-50%); /* Adjust to perfectly center */
+  text-align: center; /* Center text within itself */
+  z-index: 2; /* Ensure it stays above the panel */
 }
 
 .title-header h1 {
@@ -30,4 +34,3 @@
   font-size: 18px; /* Adjust title size */
   color: black; /* Title color */
 }
-
