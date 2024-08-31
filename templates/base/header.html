@@ -12,6 +12,14 @@
     <div class='title-header'>
     <h1>DMTools Analytics Website</h1>
     </div>
+     <!-- Back and Home Buttons -->
+    <div class="button-container">
+        <!-- Back button to navigate back -->
+        <button class="btn back-button" onclick="goBack()">Back</button>
+    
+        <!-- Home button to navigate to the home page -->
+        <a href="{{ url_for('standard_bp.home') }}" class="btn home-button">Home</a>
+     </div>
 </header>
 
 {% endblock %}
