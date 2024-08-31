@@ -7,12 +7,12 @@
 {% block content %}
 
 <!-- Toggle button for the side panel -->
-<button class="open-btn" onclick="togglePanel()">☰ Open Menu</button>
+<button class="open-btn" onclick="togglePanel()">☰ Menu</button>
 <!-- Back button to go back to the previous page -->
-<button class="btn" onclick="goBack()">Back</button>
+<button class="btn back-button" onclick="goBack()">Back</button>
 
 <!-- Home button to navigate to the home page -->
-<a href="{{ url_for('standard_bp.home') }}" class="btn">Home</a>
+<a href="{{ url_for('standard_bp.home') }}" class="btn home-button">Home</a>
 
 <!-- Side panel -->
 <div id="sidePanel" class="side-panel">
