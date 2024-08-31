@@ -24,6 +24,7 @@ from blueprints.charts import charts_bp
 from blueprints.data import data_bp
 from blueprints.viewing import viewing_bp
 from blueprints.forms import forms_bp
+from blueprints.tables import tables_bp
 
 app = Flask(__name__, static_folder='static')
 
@@ -32,6 +33,7 @@ app.register_blueprint(charts_bp, url_prefix="/charts")
 app.register_blueprint(data_bp, url_prefix="/data")
 app.register_blueprint(viewing_bp, url_prefix="/viewing")
 app.register_blueprint(forms_bp, url_prefix="/forms")
+app.register_blueprint(tables_bp, url_prefix="/tables")
 
 # Define the navigation items
 def get_nav_items():
