@@ -36,14 +36,14 @@ app.register_blueprint(forms_bp, url_prefix="/forms")
 # Define the navigation items
 def get_nav_items():
     return [
-        {'text': 'Home', 'url': url_for('home')},
-        {'text': 'Charts', 'url': url_for('charts')},
-        {'text': 'Tables', 'url': url_for('tables')},
-        {'text': 'Plotly', 'url': url_for('plotly')},
-        {'text': 'Matplotlib', 'url': url_for('matplotlib')},
-        {'text': 'Matplotlib Chart Legend', 'url': url_for('matplotlib_chart_legend')},
-        {'text': 'Matplotlib Legend', 'url': url_for('matplotlib_legend')},
-        {'text': 'Dynamic Form', 'url': url_for('dynamic_form')},
+        {'text': 'Home', 'url': url_for('standard_bp.home')},
+        {'text': 'Charts', 'url': url_for('charts_bp.charts')},
+        {'text': 'Tables', 'url': url_for('table_bp.tables')},
+        {'text': 'Plotly', 'url': url_for('charts_bp.plotly')},
+        {'text': 'Matplotlib', 'url': url_for('charts_bp.matplotlib')},
+        {'text': 'Matplotlib Chart Legend', 'url': url_for('charts_bp.matplotlib_chart_legend')},
+        {'text': 'Matplotlib Legend', 'url': url_for('charts_bp.matplotlib_legend')},
+        {'text': 'Dynamic Form', 'url': url_for('forms_bp.dynamic_form')},
     ]
 
 # Context processor to make nav items available globally
