@@ -33,9 +33,23 @@ app.register_blueprint(data_bp, url_prefix="/data")
 app.register_blueprint(viewing_bp, url_prefix="/viewing")
 app.register_blueprint(forms_bp, url_prefix="/forms")
 
-@app.route('/')
-def home():
-    return render_template('static/home.html')
+# Define the navigation items
+def get_nav_items():
+    return [
+        {'text': 'Home', 'url': url_for('home')},
+        {'text': 'Charts', 'url': url_for('charts')},
+        {'text': 'Tables', 'url': url_for('tables')},
+        {'text': 'Plotly', 'url': url_for('plotly')},
+        {'text': 'Matplotlib', 'url': url_for('matplotlib')},
+        {'text': 'Matplotlib Chart Legend', 'url': url_for('matplotlib_chart_legend')},
+        {'text': 'Matplotlib Legend', 'url': url_for('matplotlib_legend')},
+        {'text': 'Dynamic Form', 'url': url_for('dynamic_form')},
+    ]
+
+# Context processor to make nav items available globally
+@app.context_processor
+def inject_nav_items():
+    return dict(nav_items=get_nav_items())
 
                        
 if __name__ == '__main__':
