@@ -28,6 +28,7 @@
 
 /* Toggle button style */
 .open-btn {
+  height: 25px;
   font-size: 15px;
   cursor: pointer;
   position: fixed; /* Fixed positioning for consistent placement */
@@ -35,7 +36,7 @@
   left: 0;
   background-color: SaddleBrown;
   color: black;
-  padding: 10px 15px;
+  padding: 0px 0px;
   border: none;
   z-index: 1100; /* Ensure button stays above the panel */
 }
