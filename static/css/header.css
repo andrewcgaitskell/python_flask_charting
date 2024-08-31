@@ -12,13 +12,12 @@
   align-items: center; /* Center vertically */
   justify-content: center; /* Center items horizontally */
   position: relative; /* Positioning for the whole header */
+  z-index: 1; /* Ensure the header stays above other elements */
 }
 
 .navigation-header {
-  position: absolute; /* Position it absolutely within master-header */
-  left: 10px; /* Position it to the left side */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Center vertically using transform */
+  margin-right: auto; /* Align to the left within the flex container */
+  padding-left: 10px; /* Optional padding */
 }
 
 
@@ -28,6 +27,7 @@
 
 .title-header h1 {
   margin: 0; /* Remove default margin */
-  font-size: 15px; /* Adjust title size */
+  font-size: 18px; /* Adjust title size */
   color: black; /* Title color */
 }
+
