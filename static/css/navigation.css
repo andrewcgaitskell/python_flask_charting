@@ -5,33 +5,35 @@
     position: fixed;
     top: 0;
     left: -250px;
-    background-color: #D3B683;
+    background-color: SaddleBrown;
     overflow-x: hidden;
     transition: 0.3s;
-    padding-top: 60px;
+    padding-top: 0px;
     z-index: 1000;
 }
 
 /* Panel content styles */
 .side-panel a {
-    padding: 10px 15px;
+    padding: 0px 0px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     color: black;
     display: block;
     transition: 0.3s;
 }
 
 .side-panel a:hover {
-    background-color: #D3B683.;
+    background-color: SaddleBrown;
 }
 
 /* Toggle button style */
 .open-btn {
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
-    background-color: #795548;
+    position : fixed;
+    top : 0;
+    background-color: SaddleBrown;
     color: black;
-    padding: 10px 15px;
+    padding: 0px 0px;
     border: none;
 }
