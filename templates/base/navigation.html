@@ -1,43 +1,8 @@
-<style>
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+{% endblock %}
 
-    /* Style for the slide-out panel */
-    .side-panel {
-        height: 100%;
-        width: 250px;
-        position: fixed;
-        top: 0;
-        left: -250px;
-        background-color: #D3B683;
-        overflow-x: hidden;
-        transition: 0.3s;
-        padding-top: 60px;
-        z-index: 1000;
-    }
-
-    /* Panel content styles */
-    .side-panel a {
-        padding: 10px 15px;
-        text-decoration: none;
-        font-size: 18px;
-        color: black;
-        display: block;
-        transition: 0.3s;
-    }
-
-    .side-panel a:hover {
-        background-color: #D3B683.;
-    }
-
-    /* Toggle button style */
-    .open-btn {
-        font-size: 20px;
-        cursor: pointer;
-        background-color: #795548;
-        color: black;
-        padding: 10px 15px;
-        border: none;
-    }
-</style>
 
 <body>
 
@@ -59,18 +24,7 @@
 </div>
 
 <script>
-    function togglePanel() {
-        var panel = document.getElementById("sidePanel");
-        var mainContent = document.getElementById("main-content");
-
-        if (panel.style.left === "-250px") {
-            panel.style.left = "0";
-            mainContent.style.marginLeft = "250px";
-        } else {
-            panel.style.left = "-250px";
-            mainContent.style.marginLeft = "0";
-        }
-    }
+    
 </script>
 
 </body>
