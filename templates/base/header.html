@@ -16,9 +16,8 @@
     <div class="button-container">
         <!-- Back button to navigate back -->
         <button class="btn back-button" onclick="goBack()">Back</button>
-    
-        <!-- Home button to navigate to the home page -->
-        <a href="{{ url_for('standard_bp.home') }}" class="btn">Home</a>
+        <!-- Button to navigate to the home page -->
+        <button class="btn" onclick="window.location.href='{{ url_for('standard_bp.home') }}'">Home</button>
      </div>
 </header>
 
