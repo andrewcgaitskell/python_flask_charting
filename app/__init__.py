@@ -49,16 +49,16 @@ import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 import numpy as np
 
-from blueprints.standard import standard_bp
-from blueprints.charts import charts_bp
-from blueprints.data import data_bp
-from blueprints.viewing import viewing_bp
-from blueprints.forms import forms_bp
-from blueprints.tables import tables_bp
+from app.blueprints.standard import standard_bp
+from app.blueprints.charts import charts_bp
+from app.blueprints.data import data_bp
+from app.blueprints.viewing import viewing_bp
+from app.blueprints.forms import forms_bp
+from app.blueprints.tables import tables_bp
 
 def init_app():
     app = Flask(__name__, static_folder='static')
-
+    '''
     FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## generated
     GOOGLE_CLIENT_ID_FLASK = environ.get("GOOGLE_CLIENT_ID_FLASK")
     GOOGLE_CLIENT_SECRET_FLASK = environ.get("GOOGLE_CLIENT_SECRET_FLASK")
@@ -69,12 +69,14 @@ def init_app():
     app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID_FLASK
     app.config['GOOGLE_CLIENT_SECRET'] = GOOGLE_CLIENT_SECRET_FLASK
     app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT",'146585145368132386173505678016728509634')
-
-    oauth = OAuth(app)
+    '''
+    
+    ## oauth = OAuth(app)
   
     with app.app_context(): 
 
         # Configure the session to use Redis
+        '''
         app.config['SESSION_TYPE'] = 'redis'
         app.config['SESSION_PERMANENT'] = False
         app.config['SESSION_USE_SIGNER'] = True
@@ -82,6 +84,7 @@ def init_app():
         app.config['SESSION_REDIS'] = redis.StrictRedis(host='container_redis_1', port=6379, db=0, decode_responses=False)
         
         Session(app)
+        '''
         
         app.errorhandler(RedisError)
         def handle_redis_error(error):
