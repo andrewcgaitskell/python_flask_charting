@@ -85,6 +85,18 @@ def generate_form_data_from_schema(subject_in, data_in):
     return form_data
 
 
+@tables_bp.route('/')
+def simple_table():
+    table_data = [
+        {'column1': 'A1', 'column2': 'B1', 'column3': 'C1'},
+        {'column1': 'A2', 'column2': 'B2', 'column3': 'C2'},
+        {'column1': 'A3', 'column2': 'B3', 'column3': 'C3'}
+    ]
+    #template = env.get_template('tables/table.html')
+    #return template.render(table_data=table_data)
+    return render_template('tables/table.html', table_data=table_data)
+   
+
 @tables_bp.route('/list')
 def tables():
     # List available models and their items
