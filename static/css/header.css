@@ -63,3 +63,7 @@
 .btn:hover {
   background-color: darkorange; /* Hover effect */
 }
+
+a {
+  padding: 0px 0px; /* Adjust padding */
+  }
