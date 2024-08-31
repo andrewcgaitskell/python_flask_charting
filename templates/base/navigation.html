@@ -4,11 +4,10 @@
 {% endblock %}
 
 
-<body>
+{% block content %}
 
 <!-- Toggle button for the side panel -->
 <button class="open-btn" onclick="togglePanel()">☰ Open Menu</button>
-
 
 <!-- Side panel -->
 <div id="sidePanel" class="side-panel">
@@ -23,9 +22,5 @@
     <a href="/charts/dynamic_form">Dynamic Form</a>
 </div>
 
-<script>
-    
-</script>
-
-</body>
+{% endblock %}
 
