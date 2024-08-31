@@ -1,39 +1,41 @@
 /* Style for the slide-out panel */
 .side-panel {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    top: 25px;
-    left: -250px;
-    background-color: SaddleBrown;
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 0px;
-    z-index: 1000;
+  height: 100%;
+  width: 250px;
+  position: fixed; /* Fixed positioning for sliding functionality */
+  top: 0; /* Start at the very top */
+  left: -250px; /* Initially hidden */
+  background-color: SaddleBrown;
+  overflow-x: hidden;
+  transition: 0.3s; /* Smooth transition */
+  padding-top: 50px; /* Adjusted to start below the header */
+  z-index: 1000; /* Higher z-index to appear above header */
 }
 
 /* Panel content styles */
 .side-panel a {
-    padding: 0px 0px;
-    text-decoration: none;
-    font-size: 15px;
-    color: black;
-    display: block;
-    transition: 0.3s;
+  padding: 10px 15px; /* Adjust padding for clickable areas */
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+  display: block;
+  transition: 0.3s;
 }
 
 .side-panel a:hover {
-    background-color: SaddleBrown;
+  background-color: darkorange; /* Different hover color for contrast */
 }
 
 /* Toggle button style */
 .open-btn {
-    font-size: 15px;
-    cursor: pointer;
-    position : fixed;
-    top : 0;
-    background-color: SaddleBrown;
-    color: black;
-    padding: 0px 0px;
-    border: none;
+  font-size: 15px;
+  cursor: pointer;
+  position: fixed; /* Fixed positioning for consistent placement */
+  top: 0;
+  left: 0;
+  background-color: SaddleBrown;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  z-index: 1100; /* Ensure button stays above the panel */
 }
