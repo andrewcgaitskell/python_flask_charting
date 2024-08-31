@@ -8,6 +8,11 @@
 
 <!-- Toggle button for the side panel -->
 <button class="open-btn" onclick="togglePanel()">☰ Open Menu</button>
+<!-- Back button to go back to the previous page -->
+<button class="btn" onclick="goBack()">Back</button>
+
+<!-- Home button to navigate to the home page -->
+<a href="{{ url_for('static_bp/home') }}" class="btn">Home</a>
 
 <!-- Side panel -->
 <div id="sidePanel" class="side-panel">
