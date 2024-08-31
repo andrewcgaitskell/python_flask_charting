@@ -1,47 +1,40 @@
 .master-header {
   width: 100%;
-  height: 25px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
   background-color: SaddleBrown;
   color: black;
-  padding: 0;
-  border-style: solid;
-  border-width: 0px;
-  border-color: SaddleBrown;
   font-size: 16px;
-  display: flex; /* Use Flexbox for layout */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center items horizontally */
-  position: relative; /* Positioning for the whole header */
-  z-index: 1; /* Ensure the header stays above other elements */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
 }
 
 .navigation-header {
-  margin-right: auto; /* Align to the left within the flex container */
   padding-left: 10px; /* Optional padding */
 }
 
 
 .title-header {
-  height: 25px;
-  position: absolute; /* Position it absolutely within the header */
-  left: 50%; /* Move to the center */
-  transform: translateX(-50%); /* Adjust to perfectly center */
-  text-align: center; /* Center text within itself */
-  z-index: 2; /* Ensure it stays above the panel */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 2;
 }
 
 .title-header h1 {
-  margin: 0; /* Remove default margin */
-  font-size: 15px; /* Adjust title size */
-  color: black; /* Title color */
+  margin: 0;
+  font-size: 18px;
 }
 
 .button-container {
-  margin-left: auto; /* Push to the right side */
-  padding-right: 0px; /* Optional padding */
-  display: flex; /* Use Flexbox for buttons */
-  gap: 0px; /* Spacing between buttons */
-  align-items: center; /* Center buttons vertically */
+  margin-left: auto;
+  padding-right: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .btn {
@@ -49,18 +42,17 @@
   cursor: pointer;
   background-color: SaddleBrown;
   color: black;
-  padding: 0px 0px; /* Adjust padding */
-  border: solid black 1px;
-  text-decoration: none; /* Remove underline for anchor button */
-  display: inline-block; /* Use inline-block for better control over spacing */
-  line-height: 20px; /* Align text vertically */
-  border-radius: 5px; /* Rounded corners for buttons */
-  text-align: center; /* Center text */
-  height: 20px; /* Ensure consistent height */
-  vertical-align: middle; /* Ensure buttons align in middle */
-  margin: 0; /* Remove any default margins */
+  padding: 5px 5px;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 25px;
+  border-radius: 5px;
+  text-align: center;
+  height: 30px;
 }
 
 .btn:hover {
-  background-color: darkorange; /* Hover effect */
+  background-color: darkorange;
 }
+
