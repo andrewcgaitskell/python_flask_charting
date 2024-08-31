@@ -7,9 +7,6 @@
   right: 0;
   background-color: SaddleBrown;
   color: black;
-  display: flex;
-  justify-content: center; /* Align horizontal */
-  align-items: center; /* Align vertical */
   padding: 0;
   border-style: solid;
   border-width: 0px;
