@@ -8,7 +8,7 @@
     <h1>Available Subjects</h1>
     <ul>
         {% for subject in subjects %}
-        <li><a href="{{ url_for('forms_bp.list_items', subject=subject) }}">{{ subject }}</a></li>
+        <li><a href="{{ url_for('tables_bp.list_items', subject=subject) }}">{{ subject }}</a></li>
         {% endfor %}
     </ul>
 </body>
