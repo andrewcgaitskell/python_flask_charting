@@ -16,3 +16,39 @@
   border-color: SaddleBrown;
   font-size: 16px;
   }
+
+title-header{
+  width : 100px;
+  height : 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: SaddleBrown;
+  color: black;
+  justify-content: center; /* Align horizontal */
+  align-items: center; /* Align vertical */
+  padding: 0;
+  border-style: solid;
+  border-width: 0px;
+  border-color: SaddleBrown;
+  font-size: 16px;
+  }
+
+navigation-header{
+  width : 100px;
+  height : 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: SaddleBrown;
+  color: black;
+  justify-content: left; /* Align left */
+  align-items: center; /* Align vertical */
+  padding: 0;
+  border-style: solid;
+  border-width: 0px;
+  border-color: SaddleBrown;
+  font-size: 16px;
+  }
