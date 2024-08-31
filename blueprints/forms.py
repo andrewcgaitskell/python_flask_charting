@@ -101,7 +101,16 @@ def edit_model(subject_in,id_in):
     return render_template('forms/schema_form.html', form_data=form_data, action=f'/edit/{subject_in}/{id_in}')
 
 
-
+@forms_bp.route('/dynamic_form')
+def dynamic_form():
+    fields = [
+        {'id': 'name', 'label': 'Name', 'type': 'text', 'name': 'name'},
+        {'id': 'email', 'label': 'Email', 'type': 'email', 'name': 'email'},
+        {'id': 'age', 'label': 'Age', 'type': 'number', 'name': 'age'}
+    ]
+    #template = env.get_template('forms/dynamic_form.html')
+    #return template.render(fields=fields)
+    return render_template('forms/dynamic_form.html', fields=fields)
 
 
 @forms_bp.route('/<subject>/create/', methods=['GET', 'POST'])
