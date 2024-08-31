@@ -1,6 +1,6 @@
 .master-header {
   width: 100%;
-  height: 50px; /* Adjust as needed */
+  height: 25px; /* Adjust as needed */
   background-color: SaddleBrown;
   color: black;
   font-size: 16px;
@@ -46,10 +46,10 @@
   border: none;
   text-decoration: none;
   display: inline-block;
-  line-height: 25px;
+  line-height: 20px;
   border-radius: 5px;
   text-align: center;
-  height: 30px;
+  height: 25px;
 }
 
 .btn:hover {
