@@ -3,7 +3,7 @@
     height: 100%;
     width: 250px;
     position: fixed;
-    top: 0;
+    top: 25px;
     left: -250px;
     background-color: SaddleBrown;
     overflow-x: hidden;
