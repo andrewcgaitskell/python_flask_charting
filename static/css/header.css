@@ -52,12 +52,13 @@
   padding: 5px 5px; /* Adjust padding */
   border: solid black 1px;
   text-decoration: none; /* Remove underline for anchor button */
-  display: inline-flex; /* Inline-flex to behave properly in flex containers */
-  align-items: center; /* Vertically center content inside buttons */
-  justify-content: center; /* Center text inside buttons */
-  height: 25px; /* Set a consistent height for vertical centering */
-  line-height: normal; /* Use normal line-height to avoid overflow */
+  display: inline-block; /* Use inline-block for better control over spacing */
+  line-height: 25px; /* Align text vertically */
   border-radius: 5px; /* Rounded corners for buttons */
+  text-align: center; /* Center text */
+  height: 25px; /* Ensure consistent height */
+  vertical-align: middle; /* Ensure buttons align in middle */
+  margin: 0; /* Remove any default margins */
 }
 
 .btn:hover {
