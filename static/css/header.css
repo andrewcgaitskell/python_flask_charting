@@ -35,3 +35,25 @@
   font-size: 15px; /* Adjust title size */
   color: black; /* Title color */
 }
+
+.button-container {
+  margin-left: auto; /* Push to the right side */
+  padding-right: 10px; /* Optional padding */
+  display: flex; /* Use Flexbox for buttons */
+  gap: 10px; /* Spacing between buttons */
+}
+
+.btn {
+  font-size: 15px;
+  cursor: pointer;
+  background-color: SaddleBrown;
+  color: black;
+  padding: 5px 10px; /* Adjust padding */
+  border: none;
+  text-decoration: none; /* Remove underline for anchor button */
+  display: inline-block; /* Display as inline-block */
+}
+
+.btn:hover {
+  background-color: darkorange; /* Hover effect */
+}
