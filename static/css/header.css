@@ -1,6 +1,6 @@
 .master-header {
   width: 100%;
-  height: 25px; /* Adjusted height to better fit the content */
+  height: 50px; /* Adjust as needed */
   background-color: SaddleBrown;
   color: black;
   padding: 0;
@@ -10,17 +10,24 @@
   font-size: 16px;
   display: flex; /* Use Flexbox for layout */
   align-items: center; /* Center vertically */
-  justify-content: space-between; /* Align children at the sides */
+  justify-content: center; /* Center items horizontally */
   position: relative; /* Positioning for the whole header */
 }
 
 .navigation-header {
-  flex-grow: 1; /* Take up space on the left */
-  text-align: left; /* Align text to the left */
-  padding-left: 10px; /* Optional padding */
+  position: absolute; /* Position it absolutely within master-header */
+  left: 10px; /* Position it to the left side */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically using transform */
 }
 
+
 .title-header {
-  flex-grow: 1; /* Center title header */
-  text-align: center; /* Align title to the center */
+  text-align: center; /* Center text */
+}
+
+.title-header h1 {
+  margin: 0; /* Remove default margin */
+  font-size: 15px; /* Adjust title size */
+  color: black; /* Title color */
 }
