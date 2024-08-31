@@ -11,7 +11,6 @@ bcrypt==4.2.0
 beautifulsoup4==4.12.3
 bleach==6.1.0
 blinker==1.8.2
--e git+https://github.com/BrownParticleAstro/dmtools.git@8f1a5f099fef74b4d5378b87b3758d6d258a2325#egg=brown_edu_dmtools&subdirectory=basecode/publish_library/brown_edu_dmtools
 cachelib==0.9.0
 certifi==2024.7.4
 cffi==1.17.0
