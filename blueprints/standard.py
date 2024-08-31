@@ -3,8 +3,13 @@ from flask import Blueprint, render_template
 standard_bp = Blueprint('standard_bp', __name__)
 
 # Define routes for the blueprint
-@standard_bp.route('/home')
+@standard_bp.route('/')
 def home():
+    return render_template('static/home.html')
+
+# Define routes for the blueprint
+@standard_bp.route('/home')
+def home_page():
     return render_template('static/home.html')
 
 # Define routes for the blueprint
