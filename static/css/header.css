@@ -50,13 +50,14 @@
   background-color: SaddleBrown;
   color: black;
   padding: 5px 5px; /* Adjust padding */
-  border: none;
+  border: solid black 1px;
   text-decoration: none; /* Remove underline for anchor button */
-  display: flex; /* Treat as flex items */
+  display: inline-flex; /* Inline-flex to behave properly in flex containers */
   align-items: center; /* Vertically center content inside buttons */
   justify-content: center; /* Center text inside buttons */
   height: 25px; /* Set a consistent height for vertical centering */
-  line-height: 25px; /* Align text vertically */
+  line-height: normal; /* Use normal line-height to avoid overflow */
+  border-radius: 5px; /* Rounded corners for buttons */
 }
 
 .btn:hover {
